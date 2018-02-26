@@ -1,0 +1,10 @@
+.modal-title{
+  position: relative;
+  font-weight: bold;
+
+}
+.field_2{
+  position: relative;
+  bottom: 4em;
+  float: right;
+}

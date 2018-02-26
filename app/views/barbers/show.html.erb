@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%=@barber.name%></h1>
+
+  <strong>Email:</strong>
+  <%= @barber.email %>
+</p>
+
+
+<%= link_to 'Edit', edit_barber_path(@barber) %> |
+<%= link_to 'Back', barbers_path %>
+<%= link_to 'Schedule', @barber.get_appointment %>

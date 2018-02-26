@@ -1,0 +1,35 @@
+<%= form_with(model: barber, local: true) do |form| %>
+  <% if barber.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(barber.errors.count, "error") %> prohibited this barber from being saved:</h2>
+
+      <ul>
+      <% barber.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :barber_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email, id: :barber_email %>
+  </div>
+  <div class="field">
+    <%= form.label :password %>
+    <%= form.text_field :password, id: :barber_password %>
+  </div>
+  <div class="field">
+    <%= form.label :password_confirmation %>
+    <%= form.text_field :password_confirmation, id: :barber_password_confirmation %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
