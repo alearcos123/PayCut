@@ -5,6 +5,12 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+#stripe
+
+gem 'stripe', '~> 1.57', '>= 1.57.1'
+
+gem 'dotenv-rails', :groups => [:development, :test]
+#jquery
 gem 'jquery-rails'
 
 gem 'bcrypt', '~> 3.1.11'
