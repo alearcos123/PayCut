@@ -1,7 +1,6 @@
 module SessionsHelper
   def log_in(user)
     session[:user_id] = user.id
-
   end
   def remember(user)
     user.remember
@@ -24,8 +23,10 @@ module SessionsHelper
   end
   def forget(user)
     user.forget
-    cookies.delete(:user_id)
-    cookies.delete(:remember_token)
+    if user.activated?
+      cookies.delete(:user_id)
+      cookies.delete(:remember_token)
+    end
   end
   def logged_in?
     !current_user.nil?

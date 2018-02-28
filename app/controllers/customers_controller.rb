@@ -28,6 +28,7 @@ class CustomersController < ApplicationController
 
     if @customer.save
       @customer.send_activation_email
+      logout(@customer)
       redirect_to root_url
       p "redirected to root"
       flash[:notice] = "Please check your email to activate your account."
@@ -63,6 +64,9 @@ class CustomersController < ApplicationController
   end
 
   private
+    def logout(user)
+      session.delete(:user_id)
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_customer
       @customer = Customer.find(params[:id])

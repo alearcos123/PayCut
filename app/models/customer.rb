@@ -1,5 +1,5 @@
 class Customer < ApplicationRecord
-  attr_accessor :remember_token, :activation_token
+  attr_accessor :reset_token, :remember_token, :activation_token
   include ValidateEmailUniquenessAcrossModels
   has_many :appointments
   has_many :barbers, through: :appointments
@@ -33,6 +33,17 @@ class Customer < ApplicationRecord
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
                                                   BCrypt::Engine.cost
     BCrypt::Password.create(string, cost: cost)
+  end
+  def create_reset_digest
+    self.reset_token = Customer.new_token
+    update_attribute(:reset_digest,  Customer.digest(reset_token))
+    update_attribute(:reset_sent_at, Time.zone.now)
+  end
+  def send_password_reset_email
+    CustomerMailer.password_reset(self).deliver_now
+  end
+  def password_reset_expired?
+    reset_sent_at < 2.hours.ago
   end
 
   private

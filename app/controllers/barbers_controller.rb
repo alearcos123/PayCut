@@ -39,6 +39,7 @@ class BarbersController < ApplicationController
     @barber = Barber.new(barber_params)
       if @barber.save
         @barber.send_activation_email
+        logout(@barber)
         redirect_to root_url
         flash[:info] = "Please check your email to activate your account."
       else
@@ -71,6 +72,9 @@ class BarbersController < ApplicationController
   end
 
   private
+    def logout(user)
+      session.delete(:user_id)
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_barber
       @barber = Barber.find(params[:id])
