@@ -37,16 +37,13 @@ class BarbersController < ApplicationController
   # POST /barbers.json
   def create
     @barber = Barber.new(barber_params)
-
-    respond_to do |format|
       if @barber.save
-        format.html { redirect_to @barber, notice: 'Barber was successfully created.' }
-        format.json { render :show, status: :created, location: @barber }
+        @barber.send_activation_email
+        redirect_to root_url
+        flash[:info] = "Please check your email to activate your account."
       else
-        format.html { render :new }
-        format.json { render json: @barber.errors, status: :unprocessable_entity }
+        render :new
       end
-    end
   end
 
   # PATCH/PUT /barbers/1

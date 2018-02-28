@@ -26,14 +26,15 @@ class CustomersController < ApplicationController
   def create
     @customer = Customer.new(customer_params)
 
-    respond_to do |format|
-      if @customer.save
-        format.html { redirect_to barbers_url }
-        format.json { render :show, status: :created, location: @customer }
-      else
-        format.html { render :new }
-        format.json { render json: @customer.errors, status: :unprocessable_entity }
-      end
+    if @customer.save
+      @customer.send_activation_email
+      redirect_to root_url
+      p "redirected to root"
+      flash[:notice] = "Please check your email to activate your account."
+      p "notice"
+    else
+      render :new
+
     end
   end
 

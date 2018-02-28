@@ -1,0 +1,10 @@
+<h1>PayCut</h1>
+
+<p>Hi <%= @customer.name %>,</p>
+
+<p>
+Welcome to PayCut! Click on the link below to activate your account:
+</p>
+
+<%= link_to "Activate", edit_account_activation_url(@customer.activation_token,
+                                                    email: @customer.email) %>
