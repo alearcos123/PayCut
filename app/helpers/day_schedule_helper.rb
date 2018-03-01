@@ -1,0 +1,2 @@
+module DayScheduleHelper
+end

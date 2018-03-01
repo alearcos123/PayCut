@@ -33,3 +33,8 @@
     <%= form.submit %>
   </div>
 <% end %>
+<%= month_calendar do |date|%>
+<div class="individual_day" data-day="<%= date %>" style="position:relative; height:100%; width:100%;">
+  <%= date.day%>
+</div>
+<%end%>

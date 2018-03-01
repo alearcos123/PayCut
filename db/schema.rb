@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180228183407) do
+ActiveRecord::Schema.define(version: 20180301171601) do
 
   create_table "appointments", force: :cascade do |t|
     t.integer "customer_id"
@@ -49,6 +49,34 @@ ActiveRecord::Schema.define(version: 20180228183407) do
     t.string "remember_digest"
     t.string "reset_digest"
     t.datetime "reset_sent_at"
+  end
+
+  create_table "day_schedules", force: :cascade do |t|
+    t.integer "time_slots"
+    t.integer "barber_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.date "date_id"
+  end
+
+  create_table "services", force: :cascade do |t|
+    t.integer "time_slots"
+    t.integer "price"
+    t.string "description"
+    t.integer "barber_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.date "date_id"
+  end
+
+  create_table "slots", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.date "date_id"
+    t.integer "barber_id"
+    t.integer "service_id"
+    t.integer "slot_number"
+    t.boolean "available", default: true
   end
 
 end

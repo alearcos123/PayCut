@@ -5,7 +5,11 @@
   <strong>Email:</strong>
   <%= @barber.email %>
 </p>
-
+<%= month_calendar do |date|%>
+<div class="individual_day" data-day="<%= date %>" style="position:relative; height:100%; width:100%;">
+  <%= date.day%>
+</div>
+<%end%>
 
 <%= link_to 'Edit', edit_barber_path(@barber) %> |
 <%= link_to 'Back', barbers_path %>
