@@ -13,7 +13,7 @@ class BarbersController < ApplicationController
   end
 
   def index
-
+    # gon.test = "test"
     @barbers = Barber.all
 
   end

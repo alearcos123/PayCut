@@ -29,9 +29,11 @@
     <%= form.text_field :password_confirmation, id: :barber_password_confirmation %>
   </div>
 
+
   <div class="actions">
     <%= form.submit %>
   </div>
+  <%= link_to 'New DaySchedule', day_schedule_new_path %>
 <% end %>
 <%= month_calendar do |date|%>
 <div class="individual_day" data-day="<%= date %>" style="position:relative; height:100%; width:100%;">

@@ -2,6 +2,7 @@
 // All this logic will automatically be available in application.js.
 $(document).on('turbolinks:load', function(){
 
+
   $('.individual_day').on('click',function(){
 
     //on click I want to render a form to pop up with day as it date_id attribute

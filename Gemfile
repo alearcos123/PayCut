@@ -4,7 +4,8 @@ git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
 end
-
+#install gon for jquery
+gem 'gon', '~> 6.0', '>= 6.0.1'
 #calendar gem
 gem "simple_calendar", "~> 2.0"
 #stripe
