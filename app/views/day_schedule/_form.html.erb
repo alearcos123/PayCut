@@ -1,42 +1,44 @@
 
-  <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" style="
-    position: fixed; display: block;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Opening Hours
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="margin-top: 2.6em; min-width: 134px; overflow:auto; height:10em;">
-    <%optional_start_times = [5, 6, 7, 8, 9, 10, 11, 12, 1, 2, 3, 4]%>
-    <%optional_start_times.each do |time|%>
-    <%if time > 4 && time < 12%>
-    <div style="display:block; border:solid;" class="dropdown-item">
-      <%= time.to_s + ":00 am"%>
-    </div>
-    <%elsif time < 5 or time > 11%>
-    <div style="display:block; border:solid;" class="dropdown-item">
-      <%= time.to_s + ":00 pm"%>
-    </div>
-    <%end%>
-    <%end%>
-  </div>
-</div>
-<div class="dropdown"  style=" float:left; display: block; position:relative; left: 10em;">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" style="position: relative;
-  display: inline-block;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-  Closing Hours
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" style="
+  position: fixed; display: block;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  Opening Hours
 </button>
-<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="min-width: 134px; overflow:auto; height:10em;">
-  <%optional_stop_times = [11, 12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]%>
-  <%optional_stop_times.each do |time|%>
-  <%if time == 11%>
+<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="margin-top: 2.6em; min-width: 134px; overflow:auto; height:10em;">
+  <%optional_start_times = [5, 6, 7, 8, 9, 10, 11, 12, 1, 2, 3, 4]%>
+  <%optional_start_times.each do |time|%>
+  <%if time > 4 && time < 12%>
   <div style="display:block; border:solid;" class="dropdown-item">
     <%= time.to_s + ":00 am"%>
   </div>
-  <%else%>
+  <%elsif time < 5 or time > 11%>
   <div style="display:block; border:solid;" class="dropdown-item">
     <%= time.to_s + ":00 pm"%>
   </div>
   <%end%>
   <%end%>
+</div>
+</div>
+<div class="dropdown"  style=" float:left; display: block; position:relative; left: 10em;">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" style="position: relative;
+    display: inline-block;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Closing Hours
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="min-width: 134px; overflow:auto; height:10em;">
+    <%optional_stop_times = [11, 12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]%>
+      <%optional_stop_times.each do |time|%>
+      <%if time == 11%>
+        <div style="display:block; border:solid;" class="dropdown-item">
+          <%= time.to_s + ":00 am"%>
+        </div>
+      <%else%>
+        <div style="display:block; border:solid;" class="dropdown-item">
+          <%= time.to_s + ":00 pm"%>
+        </div>
+      <%end%>
+    <%end%>
 
+  </div>
 </div>
-</div>
+
+<input type="date"  name="date-selected" value="<%= params["date"]  %>" readonly >
