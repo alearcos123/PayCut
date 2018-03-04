@@ -18,5 +18,6 @@ Rails.application.routes.draw do
   get '/logout', to: 'sessions#destroy'
   resources :account_activations, only: [:edit]
   get '/day_schedule/new', to: 'day_schedule#new'
+  post '/day_schedules', to: 'day_schedule#create'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

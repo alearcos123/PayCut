@@ -21,11 +21,16 @@ class SessionsController < ApplicationController
         end
       elsif customer && customer.authenticate(params[:session][:password])
         if customer.activated?
+          p "<CUSTOMER>"
+          p customer
+          p "<PARAMS[:SESSION]>"
+          p params[:session]
           log_in customer
-          remember customer
+          remember(customer)
           # params[:session][:remember_me] == '1' ? remember(customer) : forget(customer)
           redirect_to customer
           flash[:notice] = 'Welcome Back!'
+
         else
           message  = "Account not activated. "
           message += "Check your email for the activation link."

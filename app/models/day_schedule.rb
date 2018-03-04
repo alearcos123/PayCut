@@ -1,4 +1,6 @@
 class DaySchedule < ApplicationRecord
+  has_many :slots
+  belongs_to :barbers
   def day_list(time_slots, date_id, barber_id)
     n = 0
     for i in 0..(time_slots - 1)

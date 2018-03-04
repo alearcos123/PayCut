@@ -14,3 +14,6 @@
 <%= link_to 'Edit', edit_barber_path(@barber) %> |
 <%= link_to 'Back', barbers_path %>
 <%= link_to 'Schedule', @barber.get_appointment %>
+<%if params[:id] == params[@current_user[:id]]%>
+  <%= link_to 'anayltics', barbers_path%>
+<%end%>
