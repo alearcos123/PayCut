@@ -13,7 +13,7 @@ module SessionsHelper
   def current_user
     if user_id = session[:user_id]
       p "session is remembered"
-      @current_user ||= Customer.find_by(session[:customer_id]) or Barber.find_by(session[:barber_id])
+      @current_user ||= Customer.find_by(session[:user_id]) or Barber.find_by(session[:user_id])
     elsif user_id = cookies.signed[:user_id]
       p "cookies are working"
       user = Customer.find_by(id: user_id) or Barber.find_by(id: user_id)
