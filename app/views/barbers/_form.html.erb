@@ -33,10 +33,14 @@
   <div class="actions">
     <%= form.submit %>
   </div>
-  <%= link_to 'New DaySchedule', day_schedule_new_path %>
+  <!-- this is the one we need to add into the box  -->
+  <%= link_to 'New Day Schedule', day_schedule_new_path %>
 <% end %>
+<!-- inside of this -->
 <%= month_calendar do |date|%>
-<div class="individual_day" data-day="<%= date %>" style="position:relative; height:100%; width:100%;">
-  <%= date.day%>
-</div>
+  <a class="calendar-cell" href="<%= day_schedule_new_path(date: date) %>">
+    <div class="individual_day" data-day="<%= date %>" style="position:relative; height:100%; width:100%;">
+      <%= date.day%>
+    </div>
+  </a>
 <%end%>
