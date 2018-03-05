@@ -5,6 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+#gon gem
+gem 'gon', '~> 6.1'
 #calendar gem
 gem "simple_calendar", "~> 2.0"
 #stripe
@@ -13,7 +15,7 @@ gem 'stripe', '~> 1.57', '>= 1.57.1'
 
 gem 'dotenv-rails', :groups => [:development, :test]
 #jquery
-gem 'jquery-rails'
+
 
 gem 'bcrypt', '~> 3.1.11'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -37,6 +39,19 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+
+gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
+gem 'jquery-rails'
+gem "font-awesome-rails"
+
+gem 'materialize-sass', '~> 1.0.0.alpha4'
+gem 'material_icons'
+
+gem 'nokogiri'
+gem 'httparty', '~> 0.13.7'
+gem 'http', '~> 3.0'
+gem 'json', '~> 1.8', '>= 1.8.3'
+
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

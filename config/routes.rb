@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   root :to => 'barbers#index'
   get '/search' => 'barbers#search'
   get '/barber/appointment' => 'barbers#appointment'
+
+  get '/customers/new' => 'customers#new'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'

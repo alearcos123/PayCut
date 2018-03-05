@@ -2,17 +2,144 @@
 <html>
   <head>
     <title>QuickPay</title>
+    <%= include_gon%>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> -->
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+
   </head>
+
+  <div class="navbar-fixed z-depth-5">
+  <nav>
+    <div class="nav-wrapper #1a237e indigo darken-4">
+      <a href="#!" class="brand-logo" >Paycut</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down" style="padding:20px;">
+        <li><%= link_to "Login", login_path, style: "color: white;" %></li>
+        <li><%= link_to "Get Started", new_customer_path, style: "color: white;" %></li>
+        <li><%= link_to "Find a Barber", barbers_path, style: "color: white;" %></li>
+      </ul>
+      <a href="#" data-activates="slide-out" class="button-collapse" style="color: white;"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+
+  </div>
+  <!-- Side navbar -->
+  <ul id="slide-out" class="side-nav" >
+    <h4 style="text-align:center">Paycut</h4>
+    <li><div class="divider"></div></li>
+    <li><div class="user-view">
+    <div class="background">
+      <li><%= link_to "Login", barbers_path  %></li>
+      <li><%= link_to "Get Started", login_path %></li>
+      <li><%= link_to "Find Barber", new_customer_path %></li>
+    </div>
+    </div></li>
+  </ul>
 
   <body>
 
-    <%= yield %>
-    <%= console%>
+    <div id="index-banner" class="container ">
+      <div class="section no-pad-bot">
+        <div class="container">
+          <br><br>
+          <h1 class="header center ##ffffff-text white-text" style="font-size:5.2rem;">Paycut</h1>
+          <div class="row center">
+            <h5 class="header col s12 #ffffff-text white-text" >A modern way to get a hair cut</h5>
+          </div>
+          <nav class="#ffffffb3 z-depth-5" style="background-color: #ffffffb3;border-radius: 8px 8px 8px 8px;">
+            <div class="nav-wrapper">
+              <form>
+                <div class="input-field" >
+                  <input id="search" type="search" required style="border-radius: 8px 8px 8px 8px;">
+                  <label class="label-icon" for="search"><i class=" material-icons">search</i></label>
+                  <i class="material-icons">close</i>
+                </div>
+              </form>
+            </div>
+          </nav>
+
+          <%= form_tag('/search', method: "get") do %>
+            <%= label_tag(:name, "Search for:") %>
+            <%= text_field_tag(:name) %>
+            <%= submit_tag("Search") %>
+          <% end %>
+
+          <br><br>
+
+        </div>
+      </div>
+
+    </div>
+
+
+    <%= yield %> <br>
+    <%=console%>
+    <br>
+    <br>
+
+   <!-- Googlemaps API -->
+
+   <!-- <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+   <div id="map"></div> -->
+   <!-- Replace the value of the key parameter with a security variable. -->
+   <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCS3cfxWkrKrL76zSyU_1zL4G9Jq1NM-nw&libraries=places&callback=initAutocomplete"
+         async defer></script> -->
+
+
+
+
+
+    <div class="container">
+      <div class="section">
+
+        <!--   Icon Section   -->
+        <div class="row">
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <h2 class="center brown-text"><i class="material-icons">flash_on</i></h2>
+              <h5 class="center">Speeds up development</h5>
+
+              <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
+            </div>
+          </div>
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <h2 class="center brown-text"><i class="material-icons">group</i></h2>
+              <h5 class="center">User Experience Focused</h5>
+
+              <p class="light">By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms allow for a more unified user experience.</p>
+            </div>
+          </div>
+
+          <div class="col s12 m4">
+            <div class="icon-block">
+              <h2 class="center brown-text"><i class="material-icons">settings</i></h2>
+              <h5 class="center">Easy to work with</h5>
+
+              <p class="light">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+
+
+
   </body>
 </html>

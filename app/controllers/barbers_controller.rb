@@ -1,4 +1,10 @@
 class BarbersController < ApplicationController
+  require 'http'
+require 'nokogiri'
+require "json"
+require "httparty"
+
+
   before_action :set_barber, only: [:show, :edit, :update, :destroy]
 
   # GET /barbers
@@ -21,6 +27,39 @@ class BarbersController < ApplicationController
   # GET /barbers/1
   # GET /barbers/1.json
   def show
+
+    if @barber.url == ""
+      p "BARBER.URL IS EMPTY"
+      gon.barberlatitude = 25.761681
+
+      gon.barberlongitude = -80.191788
+    else
+      p "BARBER.URL IS PRESENT"
+      example = (@barber.url).split("biz/")
+      params[:business_id] = example.last
+
+      business_id = params[:business_id]
+      url = "#{API_HOST}#{BUSINESS_PATH}#{business_id}"
+
+      response = HTTP.auth("Bearer #{API_KEY}").get(url)
+
+      #lookup has the complete response:
+      lookup = response.parse
+
+      @lookup = lookup
+      #
+      @barberkeys= lookup.keys
+      #
+      @barbername= lookup["name"]
+      #  #
+      @barberphone = lookup["display_phone"]
+      #  #
+      # @barberaddress= lookup["location"]["display_address"]
+      @barberstreet = lookup["location"]["display_address"][0]
+      @barbercitystatezip = lookup["location"]["display_address"][1]
+      gon.barberlatitude = lookup["coordinates"]["latitude"]
+      gon.barberlongitude = lookup["coordinates"]["longitude"]
+    end
 
   end
 
@@ -78,6 +117,7 @@ class BarbersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_barber
       @barber = Barber.find(params[:id])
+
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
