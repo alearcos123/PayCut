@@ -1,17 +1,54 @@
 <p id="notice"><%= notice %></p>
-
-<h1><%=@barber.name%></h1>
-
+<p>
+  <strong>Barber:</strong>
+  <%=@barber.name%>
+</p>
+<p>
   <strong>Email:</strong>
   <%= @barber.email %>
 </p>
+
+  <!-- <h3>Information from Yelp:</h3> -->
+  <!-- To testing only: -->
+  <p>
+    <%= @lookup %>
+    <%= @barberkeys %>
+  </p>
+
+  <p>
+    <strong>Barber shop:</strong>
+    <%= @barbername  %>
+  </p>
+  <p>
+    <strong>Phone:</strong>
+    <%= @barberphone  %>
+  </p>
+  <p>
+    <strong>Address:</strong>
+    <%= @barberstreet  %>,
+    <%= @barbercitystatezip%>.
+  </p>
+
+
+
+
 <div class="calendar">
 <%= month_calendar do |date|%>
 <div class="individual_day" data-day="<%= date %>" style="position:relative; height:100%; width:100%;">
   <%= date.day%>
 </div>
 <%end%>
+
+<!-- Googlemaps API -->
+
+<input id="pac-input" class="controls" type="text" placeholder="Search Box">
+<div id="map"></div>
+<!-- Replace the value of the key parameter with a security variable. -->
+<script src="https://maps.googleapis.com/maps/api/js?key=<%="#{ENV["MAPS"]}"%>&libraries=places&callback=initAutocomplete"
+      async defer></script>
+
 </div>
+
 
 <%= link_to 'Edit', edit_barber_path(@barber) %> |
 <%= link_to 'Back', barbers_path %>
