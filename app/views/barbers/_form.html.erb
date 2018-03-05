@@ -28,10 +28,20 @@
     <%= form.label :password_confirmation %>
     <%= form.text_field :password_confirmation, id: :barber_password_confirmation %>
   </div>
+
+
+  <div class="field">
+    <%= form.label :url %>
+    <%= form.text_field :url, id: :barber_url %>
+  </div>
+
+
+
   <div class="actions">
     <%= form.submit %>
   </div>
   <!-- this is the one we need to add into the box  -->
+
   <%= link_to 'New Day Schedule', day_schedule_new_path %>
 <% end %>
 
@@ -39,13 +49,19 @@
 
 
 <!--  secured-->
-
+<div class="calendar">
 <%= month_calendar do |date|%>
   <%= link_to day_schedule_new_path(date: date), remote: true, class:"calendar-cell" do %>
   <!-- <a class="calendar-cell" href="<%= day_schedule_new_path(date: date) %>"> -->
+
+<!-- inside of this -->
+
+
+
     <div class="individual_day" data-day="<%= date %>" style="position:relative; height:100%; width:100%;">
       <%= date.day%>
     </div>
+
 
   <!-- </a> -->
   <% end %>
@@ -69,3 +85,4 @@
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
