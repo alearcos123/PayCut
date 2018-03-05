@@ -9,6 +9,6 @@
   <%= select_tag "closing_hour", options_for_select(@close_times), prompt: "Choose Closing Time" %>
   <%=f.submit :Submit, class: 'btn btn-success'%>
 
-  <%=button_to "Close", new_barber_path, :method => "get", class: "btn btn-danger"%>
+  <%=link_to "Close", "#", class: "btn btn-primary fixing"%>
 
 <%end%>
