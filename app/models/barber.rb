@@ -1,8 +1,9 @@
 class Barber < ApplicationRecord
   attr_accessor :reset_token, :remember_token, :activation_token
   include ValidateEmailUniquenessAcrossModels
-  has_many :appointments
-  has_many :customers, through: :appointments
+  has_many :day_schedules
+  has_many :services 
+  has_many :customers, through: :services
   validates :name,  presence: true
   validates :email, presence: true, uniqueness: true
   has_secure_password

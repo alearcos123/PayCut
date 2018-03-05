@@ -5,8 +5,10 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+
 #gon gem
 gem 'gon', '~> 6.1'
+
 #calendar gem
 gem "simple_calendar", "~> 2.0"
 #stripe

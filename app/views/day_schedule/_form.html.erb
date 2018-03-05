@@ -1,0 +1,10 @@
+
+<% if flash[:notice] %>
+    <div id="notice" style="color: red;"><%= flash[:notice] %></div>
+<% end %>
+
+  <%=form_for @day_schedule, :remote => true do |f|%>
+  <%= select_tag "opening_hour", options_for_select(@open_times), prompt: "Choose Opening Time"%>
+  <%= select_tag "closing_hour", options_for_select(@close_times), prompt: "Choose Closing Time" %>
+  <%=f.submit%>
+  <%end%>

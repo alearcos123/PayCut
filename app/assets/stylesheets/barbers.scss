@@ -1,3 +1,26 @@
 // Place all the styles related to the Barbers controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.calendar-cell{
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+}
+
+.table-striped thead tr{
+  background-color: #0000ffa8;
+
+  color: white;
+
+}
+.calendar{
+  box-shadow: 5px 3px 5px rgba(68, 68, 68, 0.6);
+
+}
+.table-striped{
+  box-shadow: 5px -1px 5px rgba(68, 68, 68, 0.6);
+  margin-top: 10px;
+}
+.calendar td:hover{
+  background-color: #dee5fc;
+}

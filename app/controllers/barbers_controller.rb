@@ -19,7 +19,7 @@ require "httparty"
   end
 
   def index
-
+    # gon.test = "test"
     @barbers = Barber.all
 
   end
@@ -108,6 +108,8 @@ require "httparty"
       format.html { redirect_to barbers_url, notice: 'Barber was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+  def analytics
   end
 
   private
