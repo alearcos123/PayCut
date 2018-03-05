@@ -37,6 +37,7 @@ class DayScheduleController < ApplicationController
       result
     }
 
+    @date = params[:date]
 
 
   end
