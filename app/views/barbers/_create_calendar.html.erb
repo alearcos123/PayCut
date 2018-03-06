@@ -1,0 +1,7 @@
+<%= month_calendar do |date|%>
+    <%= link_to day_schedule_new_path(date: date, barber_id: @barber.id), remote: true, class:"calendar-cell" do %>
+    <div class="individual_day" data-day="<%= date %>" style="position:relative; height:100%; width:100%;">
+      <%= date.day%>
+    </div>
+  <%end%>
+<%end%>

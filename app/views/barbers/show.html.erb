@@ -32,22 +32,16 @@
 
 
 
-<div class="calendar">
-<%= month_calendar do |date|%>
-<div class="individual_day" data-day="<%= date %>" style="position:relative; height:100%; width:100%;">
-  <%= date.day%>
-</div>
-<%end%>
+<%= render 'calendar'%>
 
 <!-- Googlemaps API -->
 
 <input id="pac-input" class="controls" type="text" placeholder="Search Box">
-<div id="map"></div>
+<div id="map" style="height:30em;"></div>
 <!-- Replace the value of the key parameter with a security variable. -->
 <script src="https://maps.googleapis.com/maps/api/js?key=<%="#{ENV["MAPS"]}"%>&libraries=places&callback=initAutocomplete"
       async defer></script>
 
-</div>
 
 
 <%= link_to 'Edit', edit_barber_path(@barber) %> |

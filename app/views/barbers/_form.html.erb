@@ -1,3 +1,7 @@
+<% if flash[:notice] %>
+    <div id="notice" style="color: red;"><%= flash[:notice] %></div>
+<% end %>
+
 <%= form_with(model: barber, local: true) do |form| %>
   <% if barber.errors.any? %>
     <div id="error_explanation">
@@ -42,30 +46,14 @@
   </div>
   <!-- this is the one we need to add into the box  -->
 
-  <%= link_to 'New Day Schedule', day_schedule_new_path %>
-<% end %>
+
 
 <!-- inside of this -->
 
 
 <!--  secured-->
-<div class="calendar">
-<%= month_calendar do |date|%>
-  <%= link_to day_schedule_new_path(date: date), remote: true, class:"calendar-cell" do %>
-  <!-- <a class="calendar-cell" href="<%= day_schedule_new_path(date: date) %>"> -->
-
-<!-- inside of this -->
-
-
-
-    <div class="individual_day" data-day="<%= date %>" style="position:relative; height:100%; width:100%;">
-      <%= date.day%>
-    </div>
-
-
-  <!-- </a> -->
-  <% end %>
 <%end%>
+<%=render 'create_calendar'%>
 
 
 
@@ -76,13 +64,11 @@
         <h4 class="modal-title">Plan your Schedule</h4>
       </div>
       <div id="schedule_model">
-        <!-- <p>One fine body&hellip;</p> -->
+        <p>One fine body&hellip;</p>
       </div>
       <div class="modal-footer">
 
-
       </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
+    </div>
+  </div>
+</div>

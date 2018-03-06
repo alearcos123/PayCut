@@ -12,7 +12,7 @@ class DayScheduleController < ApplicationController
   # def update_form
   # end
   def new
-    @day_schedule = DaySchedule.new(barber_id: params[:id])
+    @day_schedule = DaySchedule.new
 
     # in a controller
     @open_times = ((5..12).to_a + (1..4).to_a).map {|time|
@@ -38,12 +38,12 @@ class DayScheduleController < ApplicationController
     }
 
     @date = params[:date]
+    @barber = params[:barber_id]
 
 
   end
 
   def create
-    @day_schedule = DaySchedule.new(barber_id: params[:id])
     @open_times = ((5..12).to_a + (1..4).to_a).map {|time|
       result = "#{time}:00 "
       if time > 4 && time < 12
@@ -86,19 +86,25 @@ class DayScheduleController < ApplicationController
       end
       time_slots = 2* (second_time - first_time)
       # @day_schedule(time_slots: time_slots)
+
+
+
+
+      @day_schedule = DaySchedule.new(barber_id: params[:barber_id].to_i, time_slots: time_slots, date_id: params[:day])
       @day_schedule.save
-      flash[:notice] = "This day schedule has #{time_slots} time slots"
-      render 'new'
+      redirect_to root_url
     elsif (params[:opening_hour] == "")
       p "oh is nil"
       flash[:notice] = "Please Select an Opening Time"
-      render 'new'
+      redirect_back(fallback_location: root_path)
     else
       p "ch is nil"
       flash[:notice] = "Please Select a Closing Time"
-      render 'new'
+      redirect_back(fallback_location: root_path)
     end
   end
   def show
   end
+  def update
+  end 
 end

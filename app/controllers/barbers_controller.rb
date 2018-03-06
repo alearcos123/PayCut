@@ -1,5 +1,5 @@
 class BarbersController < ApplicationController
-  require 'http'
+require 'http'
 require 'nokogiri'
 require "json"
 require "httparty"
@@ -28,7 +28,7 @@ require "httparty"
   # GET /barbers/1.json
   def show
 
-    if @barber.url == ""
+    if @barber.url == "" or @barber.url.nil?
       p "BARBER.URL IS EMPTY"
       gon.barberlatitude = 25.761681
 
@@ -60,7 +60,9 @@ require "httparty"
       gon.barberlatitude = lookup["coordinates"]["latitude"]
       gon.barberlongitude = lookup["coordinates"]["longitude"]
     end
-
+    if gon.clicked == true
+      render '/day_schedules'
+    end
   end
 
   # GET /barbers/new
@@ -70,6 +72,17 @@ require "httparty"
 
   # GET /barbers/1/edit
   def edit
+
+    # if gon.clicked == true
+    #   p "============================================================"
+    #   byebug
+    #   if @barber.day_schedule(date_id: gon.day) == true
+    #     render '/day_schedule/update'
+    #   else
+    #     render '/day_schedule/new'
+    #   end
+    # end
+
   end
 
   # POST /barbers
@@ -77,6 +90,7 @@ require "httparty"
   def create
     @barber = Barber.new(barber_params)
       if @barber.save
+        # gon.clicked = false
         @barber.send_activation_email
         logout(@barber)
         redirect_to root_url
