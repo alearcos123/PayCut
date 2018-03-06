@@ -1,16 +1,18 @@
 class DayScheduleController < ApplicationController
-  #slot.slot_number is chosen by Barber when he decides which slots he wants not available
-  # def set_available(slot.slot_number, barber_id, date_id)
-  #   n = 0
-  #   for i in 0..(day_list.length - 1)
-  #     if day_list[n].slot_number == slot.slot_number
-  #       day_list[n].available = false
-  #     else
-  #       n+=1
-  #     end
-  # end
-  # def update_form
-  # end
+  def update
+    #slot.slot_number is chosen by Barber when he decides which slots he wants not available
+    # def set_available(slot.slot_number, barber_id, date_id)
+    #   n = 0
+    #   for i in 0..(day_list.length - 1)
+    #     if day_list[n].slot_number == slot.slot_number
+    #       day_list[n].available = false
+    #     else
+    #       n+=1
+    #     end
+    # end
+    @date = params[:date_id]
+    @barber = params[:barber_id]
+  end
   def new
     @day_schedule = DaySchedule.new
 
@@ -105,6 +107,5 @@ class DayScheduleController < ApplicationController
   end
   def show
   end
-  def update
-  end 
+
 end

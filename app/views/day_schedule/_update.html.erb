@@ -1,0 +1,10 @@
+<div>
+<h1>UPDATE PAGE FOR DAY SCHEDULE</h1>
+</div>
+<div class="day_list">
+<% DaySchedule.find_by(barber_id: @barber.id, date_id: @date).day_list.each do |slot|%>
+  <div class="individual_slot">
+    <%= slot%>
+  </div>
+  <%end %>
+</div>

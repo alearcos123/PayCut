@@ -1,4 +1,4 @@
 class Slot < ApplicationRecord
-  belongs_to :services
-  belongs_to :day_schedules
+  belongs_to :service
+  belongs_to :day_schedule
 end

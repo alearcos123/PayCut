@@ -1,7 +1,7 @@
 class Service < ApplicationRecord
   has_many :slots
-  belongs_to :customers
-  belongs_to :barbers
+  belongs_to :customer
+  belongs_to :barber
   #service_id has access to the time_slots it has
   def service_list(barber_id, service_id)
     for i in 0..(service.time_slots - 1)

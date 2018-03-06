@@ -89,6 +89,7 @@ require "httparty"
   # POST /barbers.json
   def create
     @barber = Barber.new(barber_params)
+    @barber.url = params[:barber][:url]
       if @barber.save
         # gon.clicked = false
         @barber.send_activation_email
