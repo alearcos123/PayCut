@@ -1,0 +1,10 @@
+<h1>Event#payment_profile</h1>
+<p>Find me in app/views/event/payment_profile.html.erb</p>
+
+<% if @barber.stripe_uid.present? %>
+<%= @barber.name %>
+<% else %>
+       <a href="https://connect.stripe.com/oauth/authorize?  response_type=code&client_id=<%= ENV['STRIPE_CONNECT_CLIENT_ID'] %>&scope=read_write">set up my free stripe account</a>
+<% end %>
+
+<h1>$<%= @balance.pending.first["amount"].to_f/100 %></h1>

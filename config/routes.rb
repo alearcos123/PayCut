@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   get 'password_resets/edit'
 
   resources :charges
+  get 'event/stripe_callback'
+  get 'event/payment_profile'
+
+  get "/stripe_connect/callback", to:"barbers#stripe_callback"
 
   resources :password_resets,     only: [:new, :create, :edit, :update]
   get 'sessions/new'
