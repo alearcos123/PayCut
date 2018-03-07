@@ -1,8 +1,36 @@
+<!-- Masthead -->
+<header class="masthead text-white text-center">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-9 mx-auto">
+        <h1 class="mb-5">Paycut <br>A modern way to get a hair cut.</h1>
+      </div>
+      <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+        <%= form_tag '/search', method: "get" do %>
+          <div class="form-row">
+            <div class="col-12 col-md-9 mb-2 mb-md-0">
+              <%= search_field_tag :name, nil, class: "form-control form-control-lg", placeholder: "Search Barbers"   %>
+            </div>
+            <div class="col-12 col-md-3">
+              <%= submit_tag("Search", class: "btn btn-block btn-lg btn-primary") %>
+            </div>
+          </div>
+          <% end %>
+      </div>
+    </div>
+  </div>
+</header>
+
 <p id="notice"><%= notice %></p>
 
-<h1>Paycut</h1>
+<h1 style="text-align:center">Paycut</h1>
 
-<table>
+<hr>
+
+
+
+<table class="table table-striped" style="font-size: 22px;">
   <thead>
     <tr>
       <th>Barber</th>
@@ -10,32 +38,16 @@
       <th colspan="3"></th>
     </tr>
   </thead>
-  <!-- <%= form_tag(barbers_path, :method => "get", id: "search-form") do %>
-    <%= text_field_tag :search, params[:search], placeholder: "Search Barbers" %>
-    <%= submit_tag "Search", :name => nil %>
-<% end %> -->
 
-<%= form_tag('/search', method: "get") do %>
-  <%= label_tag(:name, "Search for:") %>
-  <%= text_field_tag(:name) %>
-  <%= submit_tag("Search") %>
-<% end %>
 
-<!-- <form accept-charset="UTF-8" action="/search" method="get">
-  <input name="utf8" type="hidden" value="&#x2713;" />
-  <label for="q">Search for:</label>
-  <input name="q" type="text" />
-  <input name="commit" type="submit" value="Search" />
-</form> -->
-
-  <tbody>
+  <tbody class="table table-striped" >
     <% @barbers.each do |barber| %>
-      <tr>
-        <td><%= barber.name %></td>
-        <td><%= barber.email %></td>
-        <td class="visit"><%= link_to 'Visit Page', barber %></td>
-        <td><%= link_to 'Edit', edit_barber_path(barber) %></td>
-        <td><%= link_to 'Destroy', barber, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <tr class="thumbnail thumb-box">
+        <td style="font-size: 20px;"><%= barber.name %></td>
+        <td style="font-size: 20px;"><%= barber.email %></td>
+        <td><%= link_to 'Visit Page', barber, class:"btn btn-primary btn-lg"%></td>
+        <td><%= link_to 'Edit', edit_barber_path(barber), class:"btn btn-info btn-lg" %></td>
+        <td><%= link_to 'Destroy', barber, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger btn-lg"  %></td>
       </tr>
     <% end %>
   </tbody>
@@ -43,12 +55,22 @@
 
 <br>
 
-<%= link_to 'New Barber', new_barber_path %> <br>
-<%= link_to 'Get Started', new_customer_path %> <br>
-<a href="/barbers">Back to Home</a> <br>
 
-<% if current_user%>
-<%= link_to 'Logout', logout_path%>
-<%else%>
-<%= link_to 'Login', login_path%>
-<%end%>
+  <center>
+    <% if current_user%>
+    <%= link_to 'Logout', logout_path%>
+    <%else%>
+    <%= link_to 'Login', login_path, class:"btn btn-success btn-lg" %>
+    <%end%> |
+
+    <%= link_to 'New Barber', new_barber_path, class:"btn btn-info btn-lg" %> |
+
+    <%= link_to 'Get Started', new_customer_path, class:"btn btn-primary btn-lg" %> |
+
+    <a href="/barbers"  class="btn btn-warning btn-lg">Back to Home</a>
+
+</center>
+
+
+
+<br>

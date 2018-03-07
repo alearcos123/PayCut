@@ -10,28 +10,32 @@
       </ul>
     </div>
   <% end %>
-  
 
-  <div class="field">
+
+  <div class="field" style="text-align:center;">
     <%= form.label :name %>
     <%= form.text_field :name, id: :customer_name %>
   </div>
 
-  <div class="field">
+  <div class="field" style="text-align:center;">
     <%= form.label :email %>
     <%= form.text_field :email, id: :customer_email %>
   </div>
-  <div class="field">
+  <div class="field" style="text-align:center;">
     <%= form.label :password %>
     <%= form.password_field :password, id: :customer_password %>
   </div>
-  <div class="field">
+  <div class="field" style="text-align:center;">
     <%= form.label :password_confirmation %>
     <%= form.password_field :password_confirmation, id: :customer_password_confirmation %>
   </div>
 
 
+  <span> <br>  </span>
+
   <div class="actions">
-    <%= form.submit %>
+    <p style="text-align:center;">
+    <%= form.submit "Update Customer", class: "btn btn-primary btn-lg" %>
+    </p>
   </div>
 <% end %>

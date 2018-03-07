@@ -51,15 +51,17 @@ require "httparty"
       @barberkeys= lookup.keys
       #
       @barbername= lookup["name"]
-      #  #
+      #
       @barberphone = lookup["display_phone"]
-      #  #
+      #
       # @barberaddress= lookup["location"]["display_address"]
       @barberstreet = lookup["location"]["display_address"][0]
       @barbercitystatezip = lookup["location"]["display_address"][1]
+      @barberphotos = lookup["photos"]
       gon.barberlatitude = lookup["coordinates"]["latitude"]
       gon.barberlongitude = lookup["coordinates"]["longitude"]
     end
+
     if gon.clicked == true
       render '/day_schedules'
     end
@@ -73,15 +75,7 @@ require "httparty"
   # GET /barbers/1/edit
   def edit
 
-    # if gon.clicked == true
-    #   p "============================================================"
-    #   byebug
-    #   if @barber.day_schedule(date_id: gon.day) == true
-    #     render '/day_schedule/update'
-    #   else
-    #     render '/day_schedule/new'
-    #   end
-    # end
+
 
   end
 
@@ -89,6 +83,7 @@ require "httparty"
   # POST /barbers.json
   def create
     @barber = Barber.new(barber_params)
+    @barber.url = params[:barber][:url]
       if @barber.save
         # gon.clicked = false
         @barber.send_activation_email

@@ -1,11 +1,42 @@
+<body class="viewBody">
+ <div class="content" >
+   <br>
 
-<%= form_tag('/search', method: "get") do %>
-  <%= label_tag(:name, "Search for:") %>
-  <%= text_field_tag(:name) %>
-  <%= submit_tag("Search") %>
+<div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+ <%= form_tag('/search', method: "get") do %>
+  <div class="form-row">
+    <div class="col-12 col-md-9 mb-2 mb-md-0">
+  <%= search_field_tag :name, nil, class: "form-control form-control-lg", placeholder: "Search Barbers"   %>
+  </div>
+  <div class="col-12 col-md-3">
+    <%= submit_tag("Search", class: "btn btn-block btn-lg btn-primary") %>
+  </div>
+</div>
 <% end %>
-<%@barbers.each do |item|%>
-<%=item.name%>
-<%=item.email%>
-<a href="/barbers/<%=item.id%>">Show Page</a>
-<%end%>
+</div>
+
+<hr>
+
+
+<table class="table table-striped" style="font-size: 22px;">
+  <thead>
+    <tr>
+      <th>Barber</th>
+      <th>Contact</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+      <tbody class="table table-striped" >
+    <%@barbers.each do |item|%>
+     <tr class="thumbnail thumb-box">
+     <td style="font-size: 20px;"><%=item.name%></td>
+     <td style="font-size: 20px;"><%=item.email%></td>
+     <td style="font-size: 20px;"><a class="btn btn-primary btn-lg" href="/barbers/<%=item.id%>">Show Page</a>
+    </tr>
+    <%end%>
+  </tbody>
+</table>
+
+</div>
+</body>
