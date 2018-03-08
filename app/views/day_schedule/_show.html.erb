@@ -1,0 +1,56 @@
+<h1>DAYSCHEDULE SHOW FORM</h1>
+
+<div class="show_day_list" style=" width: 20em;">
+  <%time = @start_time%>
+  <%minutes = 0 %>
+  <% @day_list.each do |slot| %>
+    <% if time < 12 %>
+      <% meridiem =  "am" %>
+      <p><%= "#{time}:#{minutes}0 #{meridiem}" %></p>
+    <%elsif time == 12 %>
+      <% meridiem = "pm"   %>
+      <p><%= "#{time}:#{minutes}0 #{meridiem}" %></p>
+    <%else%>
+      <% afternoon_time = time - 12 %>
+      <% meridiem = "pm"   %>
+      <p><%= "#{afternoon_time}:#{minutes}0 #{meridiem}" %></p>
+    <%end %>
+      <input type="radio" name="slot" class="day_slot" data-slot="<%=slot.slot_number%>" data-date_id="<%=Slot.find(slot.id).date_id%>" data-barber_id="<%=Slot.find(slot.id).barber_id%>">
+        Reserve This Spot
+
+      </input>
+    <%minutes += 3 %>
+    <%if minutes == 6 %>
+      <%time += 1 %>
+      <%minutes = 0 %>
+    <%end %>
+  <%end%>
+  <div class="services" style="float: right; height: 10em; overflow:scroll;">
+    <%if Service.find_by(barber_id: params[:barber_id]) %>
+      <b>Current Services This Barber Offers</b> <br>
+      <%Barber.find(params[:barber_id]).services.each do |service|%>
+      <input type="radio" name="service" class="individual_service" data-service="<%=service.time_slots%>" style="border: solid;">
+
+          <%= service.description %>
+
+
+          $<%= service.price %>
+
+
+          <%= service.time_slots * 30 %> minutes
+
+      </input>
+      <br>
+      <%end %>
+    <%end %>
+  </div>
+  <button class="bookit">
+
+
+
+  </button>
+</div>
+<script>
+
+
+</script>

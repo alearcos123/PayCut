@@ -1,10 +1,69 @@
 <div>
-<h1>UPDATE PAGE FOR DAY SCHEDULE</h1>
+<h1>Update Your Day Schedule</h1>
 </div>
-<div class="day_list">
-<% DaySchedule.find_by(barber_id: @barber.id, date_id: @date).day_list.each do |slot|%>
-  <div class="individual_slot">
-    <%= slot%>
-  </div>
-  <%end %>
+<div class="day_list" style=" width: 20em;">
+  <%time = @start_time%>
+  <%minutes = 0 %>
+  <% @day_list.each do |slot| %>
+    <% if time < 12 %>
+      <% meridiem =  "am" %>
+      <p><%= "#{time}:#{minutes}0 #{meridiem}" %></p>
+    <%elsif time == 12 %>
+      <% meridiem = "pm"   %>
+      <p><%= "#{time}:#{minutes}0 #{meridiem}" %></p>
+    <%else%>
+      <% afternoon_time = time - 12 %>
+      <% meridiem = "pm"   %>
+      <p><%= "#{afternoon_time}:#{minutes}0 #{meridiem}" %></p>
+    <%end %>
+      <button class="individual_slot" data-slot="<%= slot.id%>"data-date_id="<%= @date%>" data-barber_id="<%= @barber%>"data-available="<%=slot.available%>" style=" display: flex; width: 40%;  border:solid;  margin-left:20px;   height: 20px;">
+        <%=slot.available%>
+      </button>
+    <%minutes += 3 %>
+    <%if minutes == 6 %>
+      <%time += 1 %>
+      <%minutes = 0 %>
+    <%end %>
+  <%end%>
 </div>
+<script>
+
+
+
+var slots = document.getElementsByClassName("individual_slot");
+
+for(var i = 0; i < slots.length; i++) {
+  slots[i].addEventListener('click', function(ev) {
+    toggleAvailable(ev);
+  })
+}
+
+function toggleAvailable(event){
+  var date_id = event.target.dataset.date_id
+  var barber_id = event.target.dataset.barber_id
+
+  console.log(event.target.dataset.available);
+  if (event.target.dataset.available == "true"){
+
+    event.target.dataset.available = false
+    event.target.textContent = "false"
+  }
+  else if (event.target.dataset.available == "false"){
+
+    event.target.dataset.available = true
+    event.target.textContent = "true"
+
+
+  };
+  var availability = event.target.dataset.available
+  // event.target.dataset.available = availability
+  console.log(event.target.dataset.slot);
+  $.ajax({
+    method: "POST",
+    url: "/day_schedule/update",
+    data: { slot: event.target.dataset.slot, availability: availability}
+  })
+
+}
+
+</script>

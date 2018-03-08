@@ -31,7 +31,6 @@
 
 
 
-
 <%= render 'calendar'%>
 
 <!-- Googlemaps API -->
@@ -43,6 +42,21 @@
       async defer></script>
 
 
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Plan your Schedule</h4>
+      </div>
+      <div id="schedule_model">
+        <p>One fine body&hellip;</p>
+      </div>
+      <div class="modal-footer">
+
+      </div>
+    </div>
+  </div>
+</div>
 
 <%= link_to 'Edit', edit_barber_path(@barber) %> |
 <%= link_to 'Back', barbers_path %>

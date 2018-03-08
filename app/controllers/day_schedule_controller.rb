@@ -1,17 +1,28 @@
 class DayScheduleController < ApplicationController
   def update
-    #slot.slot_number is chosen by Barber when he decides which slots he wants not available
-    # def set_available(slot.slot_number, barber_id, date_id)
-    #   n = 0
-    #   for i in 0..(day_list.length - 1)
-    #     if day_list[n].slot_number == slot.slot_number
-    #       day_list[n].available = false
-    #     else
-    #       n+=1
-    #     end
-    # end
-    @date = params[:date_id]
+    @date = params[:date]
     @barber = params[:barber_id]
+    @day_schedule = DaySchedule.find_by(barber_id: @barber, date_id: @date)
+    @start_time = @day_schedule.start_time
+    @day_list = @day_schedule.slots
+  end
+  def show
+
+
+
+    @barber_id = params[:barber_id]
+
+    @date_id = params[:date]
+    @day_schedule = DaySchedule.find_by(date_id: @date_id, barber_id: @barber_id)
+
+    @start_time = @day_schedule.start_time
+    @day_list = @day_schedule.slots
+  end
+  def set_available
+    slot = Slot.find(params[:slot])
+    slot.available = params[:availability]
+    slot.save
+
   end
   def new
     @day_schedule = DaySchedule.new
@@ -87,14 +98,16 @@ class DayScheduleController < ApplicationController
         second_time = (ch.gsub(/[:00am]/, '')).to_i
       end
       time_slots = 2* (second_time - first_time)
+      start_time = first_time
       # @day_schedule(time_slots: time_slots)
 
 
 
 
-      @day_schedule = DaySchedule.new(barber_id: params[:barber_id].to_i, time_slots: time_slots, date_id: params[:day])
+      @day_schedule = DaySchedule.new(start_time: start_time, barber_id: params[:barber_id].to_i, time_slots: time_slots, date_id: params[:day])
       @day_schedule.save
-      redirect_to root_url
+      @day_schedule.day_list(time_slots, params[:day], params[:barber_id])
+      redirect_to "/barbers/#{params[:barber_id]}/edit"
     elsif (params[:opening_hour] == "")
       p "oh is nil"
       flash[:notice] = "Please Select an Opening Time"
@@ -104,8 +117,6 @@ class DayScheduleController < ApplicationController
       flash[:notice] = "Please Select a Closing Time"
       redirect_back(fallback_location: root_path)
     end
-  end
-  def show
   end
 
 end

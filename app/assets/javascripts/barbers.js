@@ -17,9 +17,7 @@ $(document).on('turbolinks:load', function(){
 
     console.log("this shouldve rendered a form");
 
-    gon.clicked = true
 
-    gon.day = day
 
   });
 });
