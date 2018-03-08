@@ -9,7 +9,6 @@
 //
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
-//
 //= require jquery
 //= require rails-ujs
 //= require turbolinks
@@ -21,7 +20,6 @@
 $(document).ready(function(){
 $(".dropdown-button").dropdown();
 });
-
 
 
 // Googlemaps JS
@@ -107,3 +105,17 @@ function initAutocomplete() {
     map.fitBounds(bounds);
   });
 }
+
+$(function() {
+    var header = $(".navbar1", );
+
+    $(window).scroll(function() {
+        var scroll = $(window).scrollTop();
+        if (scroll >= 50) {
+            header.addClass("scrolled");
+        } else {
+            header.removeClass("scrolled");
+        }
+    });
+    console.log("this is a test")
+});
