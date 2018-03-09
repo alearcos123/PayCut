@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20180307020952) do
-
 ActiveRecord::Schema.define(version: 20180307192038) do
-
 
   create_table "appointments", force: :cascade do |t|
     t.integer "customer_id"

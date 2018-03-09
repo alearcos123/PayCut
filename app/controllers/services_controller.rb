@@ -13,17 +13,22 @@ class ServicesController < ApplicationController
       day_list = DaySchedule.find_by(barber_id: @barber_id, date_id: @date_id).slots
       n = @slot_number
       @available_frame = true
+      @slots_to_toggle = []
       for i in 0..(@current_service)
         if !day_list[n].available
           @available_frame = false
         else
+          @slots_to_toggle << day_list[n]
           n+= 1
         end
       end
     end
     p "======================================"
     p @available_frame
-    gon.open_stripe = @available_frame
+    @service_price = Service.find(@current_service).price.to_i
+    if @available_frame
+      redirect_to "/charges/new?service_price=#{@service_price}"
+    end
   end
   def new
     times = [30, 60, 90, 120, 150, 180]

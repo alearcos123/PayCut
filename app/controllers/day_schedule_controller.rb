@@ -11,11 +11,12 @@ class DayScheduleController < ApplicationController
   def show
 
 
-
     @barber_id = params[:barber_id]
 
     @date_id = params[:date]
+
     @day_schedule = DaySchedule.find_by(date_id: @date_id, barber_id: @barber_id)
+
 
     @start_time = @day_schedule.start_time
     @day_list = @day_schedule.slots

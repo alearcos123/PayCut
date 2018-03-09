@@ -2,6 +2,9 @@
 <h1>DAYSCHEDULE SHOW FORM</h1>
 
 <div class="show_day_list" style=" width: 20em;">
+  <% if flash[:notice] %>
+      <div id="notice" style="color: red;"><%= flash[:notice] %></div>
+  <% end %>
   <%time = @start_time%>
   <%minutes = 0 %>
   <% @day_list.each do |slot| %>
@@ -45,6 +48,10 @@
       <%end %>
     <%end %>
   </div>
+  <div id="message">
+    <span>
+    </span>
+  </div>
   <button class="bookit" style="height: 40px; width: 180px;">
     Reserve Your Appointment
   </button>
@@ -62,6 +69,12 @@
       url: "/services/get_service",
       data: {slot_number: slot_number, date_id: date_id, barber_id: barber_id, service: service }
     });
+
+
+    $('#message').find( "span" ).text("This time frame is not available, please select a new time.");
+    console.log("page did not redirect");
+
+
   });
 
 
