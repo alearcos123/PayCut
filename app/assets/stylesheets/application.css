@@ -269,7 +269,40 @@ header.masthead h1 {
 
 }
 
+.navbar1{
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left :0;
+  padding: 2rem;
+  text-align: center;
+  color: black;
+  font-family: sans-serif;
+  background-color: rgb(41, 117, 231);
+  transition: 0.5s;
+  color: #fff;
+}
 
+.scrolled{
+  background-color: #fff;
+  border-bottom-color: white;
+  color: #000;;
+  transition: 0.5s;
+}
+/* .navbar-angel{
+  background-color: white;
+} */
+/* .toggler-example {
+    cursor: pointer;
+    color: #0A38F5;
+}
+.dark-blue-text {
+    color: #0A38F5;
+} */
+
+span.navbar-toggler-icon {
+    background-image: url('https://mdbootstrap.com/img/svg/hamburger8.svg?color=E3005C');
+}
 
 
 
