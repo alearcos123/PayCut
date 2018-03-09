@@ -1,0 +1,17 @@
+<div id="new_service">
+  <%= form_for @service, url: '/services' do |f|%>
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_field :description, id: :service_description %>
+  </div>
+  <div class="field">
+    <%= f.label :price %>
+    <%= f.text_field :price, id: :service_price%>
+  </div>
+  <%= select_tag "duration", options_for_select(@duration), prompt: "Choose a Duration" %>
+    <%= hidden_field_tag "barber_id", @barber_id%>
+  <div class="actions">
+    <%= f.submit %>
+<%end %>
+</div>
+</div>

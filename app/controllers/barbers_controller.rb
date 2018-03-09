@@ -47,6 +47,7 @@ require "httparty"
   # GET /barbers/1
   # GET /barbers/1.json
   def show
+    @date = gon.day
 
     if @barber.url == "" or @barber.url.nil?
       p "BARBER.URL IS EMPTY"
@@ -80,10 +81,9 @@ require "httparty"
       gon.barberlatitude = lookup["coordinates"]["latitude"]
       gon.barberlongitude = lookup["coordinates"]["longitude"]
     end
-    if gon.clicked == true
-      render '/day_schedules'
-    end
+
   end
+
 
   # GET /barbers/new
   def new
@@ -92,17 +92,12 @@ require "httparty"
 
   # GET /barbers/1/edit
   def edit
-
-    # if gon.clicked == true
-    #   p "============================================================"
-    #   byebug
-    #   if @barber.day_schedule(date_id: gon.day) == true
-    #     render '/day_schedule/update'
-    #   else
-    #     render '/day_schedule/new'
-    #   end
-    # end
-
+    @service = Service.new
+    times = [30, 60, 90, 120, 150, 180]
+    @duration = times.map do |time|
+      "#{time} minutes"
+    end
+    @barber_id = params[:id]
   end
 
   # POST /barbers

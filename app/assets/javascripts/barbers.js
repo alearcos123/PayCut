@@ -14,12 +14,11 @@ $(document).on('turbolinks:load', function(){
   //render the previously created schedule by barber
   // $(DaySchedule.find_by(date_id: day, barber_id: Barber.find_by(id: params[:id]).id)).show();
     console.log(day);
+    gon.day = day
 
     console.log("this shouldve rendered a form");
 
-    gon.clicked = true
 
-    gon.day = day
 
   });
 });
