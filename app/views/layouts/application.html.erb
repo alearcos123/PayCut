@@ -24,8 +24,9 @@
   </head>
   <body>
   <head>
-    <nav  class="navbar navbar1 fixed-top z-depth-5">
-      <span class="navbar-brand" style="font-size: 30px;">Paycut</span>
+
+    <nav class="navbar fixed-top z-depth-5 navbar-dark bg-primary">
+      <span class="navbar-brand" style="font-size: 30px;">PayCut</span>
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -69,14 +70,17 @@
  <br><br>
 
     <%= yield %> <br>
+    <%= console %>
     <br>
     <br>
 
 
   </body>
 
+  
+
   <!-- Footer -->
-  <footer class="footer bg-light">
+  <footer class="footer bg-light" style="padding-top:50px; padding-bottom:50px;">
     <div class="container">
       <div class="row">
         <div class="col-lg-6 h-100 text-center">
@@ -97,7 +101,7 @@
               <a href="#">Privacy Policy</a>
             </li>
           </ul>
-          <p class="text-muted small mb-4 mb-lg-0">&copy; Paycut 2018. All Rights Reserved.</p>
+          <p class="text-muted small mb-4 mb-lg-0">&copy; PayCut 2018. All Rights Reserved.</p>
         </div>
         <div class="col-lg-6 h-100 text-center">
           <ul class="list-inline mb-0">

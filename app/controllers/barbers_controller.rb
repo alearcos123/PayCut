@@ -56,10 +56,10 @@ require "httparty"
       gon.barberlongitude = -80.191788
     else
       p "BARBER.URL IS PRESENT"
-      example = (@barber.url).split("biz/")
-      params[:business_id] = example.last
 
-      business_id = params[:business_id]
+      example = (@barber.url).split("biz/")
+
+      business_id = example.last
       url = "#{API_HOST}#{BUSINESS_PATH}#{business_id}"
 
       response = HTTP.auth("Bearer #{API_KEY}").get(url)
@@ -67,17 +67,17 @@ require "httparty"
       #lookup has the complete response:
       lookup = response.parse
 
-      @lookup = lookup
+      @barber.barberName= lookup["name"]
       #
-      @barberkeys= lookup.keys
+      @barber.phone = lookup["display_phone"]
       #
-      @barbername= lookup["name"]
-      #
-      @barberphone = lookup["display_phone"]
-      #
-      # @barberaddress= lookup["location"]["display_address"]
+      @barber.address= lookup["location"]["display_address"]
       @barberstreet = lookup["location"]["display_address"][0]
       @barbercitystatezip = lookup["location"]["display_address"][1]
+      #
+      @barber.rating = lookup["rating"]
+      #
+      @barber.photoUrl = lookup["photos"]
       @barberphotos = lookup["photos"]
       gon.barberlatitude = lookup["coordinates"]["latitude"]
       gon.barberlongitude = lookup["coordinates"]["longitude"]
@@ -90,10 +90,12 @@ require "httparty"
   # GET /barbers/new
   def new
     @barber = Barber.new
+
   end
 
   # GET /barbers/1/edit
   def edit
+
 
     @service = Service.new
     times = [30, 60, 90, 120, 150, 180]
@@ -102,6 +104,7 @@ require "httparty"
     end
     @barber_id = params[:id]
 
+
   end
 
   # POST /barbers
@@ -109,6 +112,29 @@ require "httparty"
   def create
     @barber = Barber.new(barber_params)
     @barber.url = params[:barber][:url]
+
+    example = (@barber.url).split("biz/")
+
+    business_id = example.last
+    url = "#{API_HOST}#{BUSINESS_PATH}#{business_id}"
+
+    response = HTTP.auth("Bearer #{API_KEY}").get(url)
+
+    #lookup has the complete response:
+    lookup = response.parse
+
+    @barber.barberName= lookup["name"]
+    #
+    @barber.phone = lookup["display_phone"]
+    #
+    @barber.address= "#{lookup["location"]["display_address"][0]}, #{lookup["location"]["display_address"][1]}"
+
+    @barber.rating = lookup["rating"]
+
+    @barber.photoUrl = lookup["photos"][0]
+
+
+
       if @barber.save
         # gon.clicked = false
         @barber.send_activation_email

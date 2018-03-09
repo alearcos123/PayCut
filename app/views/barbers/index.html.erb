@@ -1,79 +1,143 @@
+
+        <!-- Masthead -->
+      <header class="masthead text-white text-center" >
+        <div class="overlay"></div>
+        <div class="container">
+          <div class="row">
+            <div class="col-xl-9 mx-auto">
+              <h1 class="mb-5">PayCut <br>A modern way to get a hair cut.</h1>
+            </div>
+            <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+              <%= form_tag '/search', method: "get" do %>
+                <div class="form-row">
+                  <div class="col-12 col-md-9 mb-2 mb-md-0">
+                    <%= search_field_tag :name, nil, class: "form-control form-control-lg", placeholder: "Search Barbers"   %>
+                  </div>
+                  <div class="col-12 col-md-3">
+                    <%= submit_tag("Search", class: "btn btn-block btn-lg btn-info") %>
+                  </div>
+                </div>
+                <% end %>
+            </div>
+          </div>
+        </div>
+      </header>
+
+    <main role="main">
+      <div class="background" style="padding-top:50px; padding-bottom:50px;">
+      </div>
+      <div class="barber">
+      <div class="row" style="padding-top:50px; padding-bottom:50px;">
+        <div class="col-md-7 order-md-1">
+
+        </div>
+
+
+        <div class="col-md-4 order-md-2">
+          <div style="background-color: white; border-radius:10px;">
+            <br>
+            <h1 class=" text-center">Create a new Barber</h1>
+            <ul style="font-size: 20px;margin-right:10px;">
+              <li>
+                Create an account and enjoy a close relationship with customers.<br>
+              </li>
+              <br>
+              <li>
+                Make schedules.
+              </li>
+              <br>
+              <li>
+                Show services.
+              </li>
+              <br>
+              <li>
+                Take advantage of an easy way to handle your barbershop
+              </li>
+              <br>
+            </ul>
+            <br>
+            <center>
+              <%= link_to 'New Barber', new_barber_path, class:"btn btn-info btn-lg" %>
+            </center>
+            <br>
+
+          </div>
+
+
 <!-- Masthead -->
 
-<header class="masthead text-white text-center">
-  <div class="jumbotron">
-    <div class="overlay"></div>
-    <div class="container">
-      <div class="row">
-        <div class="col-xl-9 mx-auto">
-          <h1 class="mb-5">Paycut <br>A modern way to get a hair cut.</h1>
-        </div>
-        <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-          <%= form_tag '/search', method: "get" do %>
-            <div class="form-row">
-              <div class="col-12 col-md-9 mb-2 mb-md-0">
-                <%= search_field_tag :name, nil, class: "form-control form-control-lg", placeholder: "Search Barbers"   %>
-              </div>
-              <div class="col-12 col-md-3">
-                <%= submit_tag("Search", class: "btn btn-block btn-lg btn-primary") %>
-              </div>
-            </div>
-            <% end %>
         </div>
       </div>
     </div>
-  </div>
-</header>
 
-<p id="notice"><%= notice %></p>
-
-<h1 style="text-align:center">Paycut</h1>
-
-<hr>
+      <div class="background" style="padding-top:50px; padding-bottom:50px;">
+      </div>
 
 
 
-<table class="table table-striped" style="font-size: 22px;">
-  <thead>
-    <tr>
-      <th>Barber</th>
-      <th>Contact</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+      <div class="background">
+        <p id="notice"><%= notice %></p>
+
+        <h1 style="text-align:center">PayCut</h1>
 
 
-  <tbody class="table table-striped" >
-    <% @barbers.each do |barber| %>
-      <tr class="thumbnail thumb-box">
-        <td style="font-size: 20px;"><%= barber.name %></td>
-        <td style="font-size: 20px;"><%= barber.email %></td>
-        <td><%= link_to 'Visit Page', barber, class:"btn btn-primary btn-lg"%></td>
-        <td><%= link_to 'Edit', edit_barber_path(barber), class:"btn btn-info btn-lg" %></td>
-        <td><%= link_to 'Destroy', barber, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger btn-lg"  %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-
-  <center>
-    <% if current_user%>
-    <%= link_to 'Logout', logout_path%>
-    <%else%>
-    <%= link_to 'Login', login_path, class:"btn btn-success btn-lg" %>
-    <%end%> |
-
-    <%= link_to 'New Barber', new_barber_path, class:"btn btn-info btn-lg" %> |
-
-    <%= link_to 'Get Started', new_customer_path, class:"btn btn-primary btn-lg" %> |
-
-    <a href="/barbers"  class="btn btn-warning btn-lg">Back to Home</a>
-
-</center>
+          <br>
 
 
 
-<br>
+
+             <div class="row justify-content-md-center">
+              <% @barbers.each do |barber| %>
+
+              <div class="box" style="margin:15px;">
+                <div class="col-md-12" >
+                  <div class="thumbnail">
+                    <h2 style= "text-align: center; padding:10px 10px 0 10px;"><%= barber.name %></h2>
+                    <p style= "text-align: center">
+
+                      <%=link_to image_tag(barber.photoUrl, size: "200x150", class: "img-circle"), barber, class: "img-circle"%>
+
+                    <div class="caption" style= "text-align: center">
+                      <p>
+                        <%=barber.barberName%>
+                      </p>
+                      <p>
+                        <%=barber.address%>
+                      </p>
+                      <p>
+                        <%=barber.rating%>
+                        <% barber.rating.to_i.times do  %>
+                         <span class="fa fa-star checked"></span>
+                        <% end %>
+                      </p>
+
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+              <% end %>
+            </div>
+
+
+          <br>
+
+
+
+        <center>
+            <% if current_user%>
+            <%= link_to 'Logout', logout_path%>
+            <%else%>
+            <%= link_to 'Login', login_path, class:"btn btn-success btn-lg" %>
+            <%end%> |
+
+
+            <%= link_to 'Get Started', new_customer_path, class:"btn btn-primary btn-lg" %>
+
+        </center>
+
+
+
+      </div><!-- /.container -->
+
+    </main>
