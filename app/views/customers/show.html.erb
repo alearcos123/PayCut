@@ -1,14 +1,22 @@
+<body class="viewBody">
+ <div class="content" >
+   <br>
+
 <p id="notice"><%= notice %></p>
 
-<p>
+<p style="font-size: 20px;">
   <strong>Name:</strong>
   <%= @customer.name %>
 </p>
 
-<p>
+<p style="font-size: 20px;">
   <strong>Email:</strong>
   <%= @customer.email %>
 </p>
 
-<%= link_to 'Edit', edit_customer_path(@customer) %> |
-<%= link_to 'Back', customers_path %>
+<%= link_to 'Edit', edit_customer_path(@customer), class:"btn btn-success btn-lg" %> |
+<%= link_to 'Back', customers_path, class:"btn btn-primary btn-lg"  %>
+
+
+</div>
+</body>

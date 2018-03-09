@@ -1,3 +1,4 @@
+
 <% if flash[:notice] %>
     <div id="notice" style="color: red;"><%= flash[:notice] %></div>
 <% end %>
@@ -15,32 +16,35 @@
     </div>
   <% end %>
 
-  <div class="field">
+
+  <div class="field" style="text-align:center;">
     <%= form.label :name %>
     <%= form.text_field :name, id: :barber_name %>
   </div>
 
-  <div class="field">
+  <div class="field" style="text-align:center;">
     <%= form.label :email %>
     <%= form.text_field :email, id: :barber_email %>
   </div>
-  <div class="field">
+  <div class="field" style="text-align:center;">
     <%= form.label :password %>
     <%= form.text_field :password, id: :barber_password %>
   </div>
-  <div class="field">
+  <div class="field" style="text-align:center;">
     <%= form.label :password_confirmation %>
     <%= form.text_field :password_confirmation, id: :barber_password_confirmation %>
   </div>
-
-
-  <div class="field">
+  <div class="field" style="text-align:center;">
     <%= form.label :url %>
     <%= form.text_field :url, id: :barber_url %>
   </div>
 
+
+
   <div class="actions">
-    <%= form.submit %>
+    <p style="text-align:center;">
+    <%= form.submit "Update Barber", class: "btn btn-primary btn-lg" %>
+    </p>
   </div>
   <!-- this is the one we need to add into the box  -->
 
@@ -60,7 +64,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">Plan your Schedule</h4>
+        <h4 style="text-align:center;" class="modal-title">Plan your Schedule</h4>
       </div>
       <div id="schedule_model">
         <p>One fine body&hellip;</p>

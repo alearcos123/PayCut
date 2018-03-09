@@ -1,6 +1,14 @@
-<h1>Editing Customer</h1>
+<body class="viewBody">
+ <div class="content" >
+   <br>
+
+<h1 style="text-align:center;">Editing Customer</h1>
 
 <%= render 'form', customer: @customer %>
 
-<%= link_to 'Show', @customer %> |
-<%= link_to 'Back', customers_path %>
+<%= link_to 'Show', @customer, class:"btn btn-success btn-lg"  %> |
+<%= link_to 'Back', customers_path, class:"btn btn-primary btn-lg" %>
+
+
+</div>
+</body>

@@ -72,15 +72,17 @@ require "httparty"
       @barberkeys= lookup.keys
       #
       @barbername= lookup["name"]
-      #  #
+      #
       @barberphone = lookup["display_phone"]
-      #  #
+      #
       # @barberaddress= lookup["location"]["display_address"]
       @barberstreet = lookup["location"]["display_address"][0]
       @barbercitystatezip = lookup["location"]["display_address"][1]
+      @barberphotos = lookup["photos"]
       gon.barberlatitude = lookup["coordinates"]["latitude"]
       gon.barberlongitude = lookup["coordinates"]["longitude"]
     end
+
 
   end
 
@@ -92,12 +94,14 @@ require "httparty"
 
   # GET /barbers/1/edit
   def edit
+
     @service = Service.new
     times = [30, 60, 90, 120, 150, 180]
     @duration = times.map do |time|
       "#{time} minutes"
     end
     @barber_id = params[:id]
+
   end
 
   # POST /barbers

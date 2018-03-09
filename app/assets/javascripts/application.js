@@ -9,31 +9,18 @@
 //
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
-//
 //= require jquery
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .
 
 
-$(document).ready(function(){
-  $('.button-collapse').sideNav({
-      menuWidth: 250, // Default is 300
-      edge: 'right', // Choose the horizontal origin*/
-      closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
-      draggable: true, // Choose whether you can drag to open on touch screens,
-    /* onOpen: function(el) { /* Do Stuff }, */ // A function to be called when sideNav is opened
-    /* onClose: function(el) { /* Do Stuff  },*/
- }
-);
 
-});
 
 
 $(document).ready(function(){
 $(".dropdown-button").dropdown();
 });
-
 
 
 // Googlemaps JS
@@ -119,3 +106,17 @@ function initAutocomplete() {
     map.fitBounds(bounds);
   });
 }
+
+$(function() {
+    var header = $(".navbar1", );
+
+    $(window).scroll(function() {
+        var scroll = $(window).scrollTop();
+        if (scroll >= 50) {
+            header.addClass("scrolled");
+        } else {
+            header.removeClass("scrolled");
+        }
+    });
+    console.log("this is a test")
+});

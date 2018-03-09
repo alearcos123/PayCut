@@ -1,29 +1,30 @@
+
 <p id="notice"><%= notice %></p>
-<p>
+<p style="font-size: 20px;">
   <strong>Barber:</strong>
   <%=@barber.name%>
 </p>
-<p>
+<p style="font-size: 20px;">
   <strong>Email:</strong>
   <%= @barber.email %>
 </p>
 
   <!-- <h3>Information from Yelp:</h3> -->
   <!-- To testing only: -->
-  <p>
+  <!-- <p>
     <%= @lookup %>
     <%= @barberkeys %>
-  </p>
+  </p> -->
 
-  <p>
+  <p style="font-size: 20px;">
     <strong>Barber shop:</strong>
     <%= @barbername  %>
   </p>
-  <p>
+  <p style="font-size: 20px;">
     <strong>Phone:</strong>
     <%= @barberphone  %>
   </p>
-  <p>
+  <p style="font-size: 20px;">
     <strong>Address:</strong>
     <%= @barberstreet  %>,
     <%= @barbercitystatezip%>.
@@ -31,15 +32,24 @@
 
 
 
+
+
+
+
 <%= render 'calendar'%>
+
+<br>
 
 <!-- Googlemaps API -->
 
 <input id="pac-input" class="controls" type="text" placeholder="Search Box">
 <div id="map" style="height:30em;"></div>
-<!-- Replace the value of the key parameter with a security variable. -->
+
 <script src="https://maps.googleapis.com/maps/api/js?key=<%="#{ENV["MAPS"]}"%>&libraries=places&callback=initAutocomplete"
       async defer></script>
+
+<br>
+
 
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
@@ -58,5 +68,7 @@
   </div>
 </div>
 
+
 <%= link_to 'Edit', edit_barber_path(@barber) %> |
 <%= link_to 'Back', barbers_path %>
+
