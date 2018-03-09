@@ -1,3 +1,4 @@
+
 <h1>DAYSCHEDULE SHOW FORM</h1>
 
 <div class="show_day_list" style=" width: 20em;">
@@ -15,7 +16,7 @@
       <% meridiem = "pm"   %>
       <p><%= "#{afternoon_time}:#{minutes}0 #{meridiem}" %></p>
     <%end %>
-      <input type="radio" name="slot" class="day_slot" data-slot="<%=slot.slot_number%>" data-date_id="<%=Slot.find(slot.id).date_id%>" data-barber_id="<%=Slot.find(slot.id).barber_id%>">
+      <input type="radio" name="slot" class="day_slot" value="<%=[slot.slot_number, Slot.find(slot.id).barber_id]  %>" >
         Reserve This Spot
 
       </input>
@@ -29,7 +30,7 @@
     <%if Service.find_by(barber_id: params[:barber_id]) %>
       <b>Current Services This Barber Offers</b> <br>
       <%Barber.find(params[:barber_id]).services.each do |service|%>
-      <input type="radio" name="service" class="individual_service" data-service="<%=service.time_slots%>" style="border: solid;">
+      <input type="radio" name="service" class="individual_service" value="<%=service.time_slots%>" style="border: solid;">
 
           <%= service.description %>
 
@@ -44,13 +45,26 @@
       <%end %>
     <%end %>
   </div>
-  <button class="bookit">
-
-
-
+  <button class="bookit" style="height: 40px; width: 180px;">
+    Reserve Your Appointment
   </button>
+
 </div>
 <script>
+  $('.bookit').on('click',function(){
+    var service = $('input[name=service]:checked').val();
+    var slot_value = $('input[name=slot]:checked').val().replace("[", "").replace("]","").split(",")
+    var slot_number = slot_value[0]
+    var date_id = gon.day
+    var barber_id = slot_value[1]
+    $.ajax({
+      method: "POST",
+      url: "/services/get_service",
+      data: {slot_number: slot_number, date_id: date_id, barber_id: barber_id, service: service }
+    });
+  });
+
+
 
 
 </script>

@@ -1,4 +1,6 @@
 class DayScheduleController < ApplicationController
+
+
   def update
     @date = params[:date]
     @barber = params[:barber_id]

@@ -26,6 +26,6 @@ Rails.application.routes.draw do
 
   get '/day_schedules', to: 'day_schedule#show'
   post '/services', to: 'services#create'
-  post '/services/:time_slots', to: 'services#get_service'
+  post '/services/get_service', to: 'services#get_service'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

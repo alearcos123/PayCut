@@ -2,15 +2,3 @@ var popup_content = `<%= j render 'show' %>`
 
 $("#schedule_model").html(popup_content)
 $("#myModal").modal()
-// $('.bookit').on('click', function(ev) {
-//   var service = ev.target.dataset.service
-//   chooseService(ev);
-//
-//   function checkService(ev){
-//     $.ajax({
-//       method: "POST",
-//       url: `/services/${service}`,
-//       data: {slot_number: event.target.dataset.slot, date_id: event.target.dataset.date_id, barber_id: event.target.dataset.barber_id}
-//     });
-//
-//   }

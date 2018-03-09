@@ -27,7 +27,7 @@ require "httparty"
   # GET /barbers/1
   # GET /barbers/1.json
   def show
-
+    @date = gon.day
 
     if @barber.url == "" or @barber.url.nil?
       p "BARBER.URL IS EMPTY"
