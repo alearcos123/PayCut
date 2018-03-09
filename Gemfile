@@ -13,8 +13,8 @@ gem 'gon', '~> 6.1'
 gem "simple_calendar", "~> 2.0"
 #stripe
 
-gem 'stripe', '~> 1.57', '>= 1.57.1'
-
+gem 'stripe'
+gem 'oauth2'
 gem 'dotenv-rails', :groups => [:development, :test]
 #jquery
 

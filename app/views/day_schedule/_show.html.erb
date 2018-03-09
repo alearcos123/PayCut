@@ -1,0 +1,83 @@
+
+<h1>DAYSCHEDULE SHOW FORM</h1>
+
+<div class="show_day_list" style=" width: 20em;">
+  <% if flash[:notice] %>
+      <div id="notice" style="color: red;"><%= flash[:notice] %></div>
+  <% end %>
+  <%time = @start_time%>
+  <%minutes = 0 %>
+  <% @day_list.each do |slot| %>
+    <% if time < 12 %>
+      <% meridiem =  "am" %>
+      <p><%= "#{time}:#{minutes}0 #{meridiem}" %></p>
+    <%elsif time == 12 %>
+      <% meridiem = "pm"   %>
+      <p><%= "#{time}:#{minutes}0 #{meridiem}" %></p>
+    <%else%>
+      <% afternoon_time = time - 12 %>
+      <% meridiem = "pm"   %>
+      <p><%= "#{afternoon_time}:#{minutes}0 #{meridiem}" %></p>
+    <%end %>
+      <input type="radio" name="slot" class="day_slot" value="<%=[slot.slot_number, Slot.find(slot.id).barber_id]  %>" >
+        Reserve This Spot
+
+      </input>
+    <%minutes += 3 %>
+    <%if minutes == 6 %>
+      <%time += 1 %>
+      <%minutes = 0 %>
+    <%end %>
+  <%end%>
+  <div class="services" style="float: right; height: 10em; overflow:scroll;">
+    <%if Service.find_by(barber_id: params[:barber_id]) %>
+      <b>Current Services This Barber Offers</b> <br>
+      <%Barber.find(params[:barber_id]).services.each do |service|%>
+      <input type="radio" name="service" class="individual_service" value="<%=service.time_slots%>" style="border: solid;">
+
+          <%= service.description %>
+
+
+          $<%= service.price %>
+
+
+          <%= service.time_slots * 30 %> minutes
+
+      </input>
+      <br>
+      <%end %>
+    <%end %>
+  </div>
+  <div id="message">
+    <span>
+    </span>
+  </div>
+  <button class="bookit" style="height: 40px; width: 180px;">
+    Reserve Your Appointment
+  </button>
+
+</div>
+<script>
+  $('.bookit').on('click',function(){
+    var service = $('input[name=service]:checked').val();
+    var slot_value = $('input[name=slot]:checked').val().replace("[", "").replace("]","").split(",")
+    var slot_number = slot_value[0]
+    var date_id = gon.day
+    var barber_id = slot_value[1]
+    $.ajax({
+      method: "POST",
+      url: "/services/get_service",
+      data: {slot_number: slot_number, date_id: date_id, barber_id: barber_id, service: service }
+    });
+
+
+    $('#message').find( "span" ).text("This time frame is not available, please select a new time.");
+    console.log("page did not redirect");
+
+
+  });
+
+
+
+
+</script>

@@ -24,9 +24,30 @@ require "httparty"
 
   end
 
+  def stripe_callback
+            options = {
+              site: 'https://connect.stripe.com',
+              authorize_url: '/oauth/authorize',
+              token_url: '/oauth/token'
+            }
+            code = params[:code]
+            client = OAuth2::Client.new(ENV['STRIPE_CONNECT_CLIENT_ID'], ENV['SECRET_KEY'], options)
+            @resp = client.auth_code.get_token(code, :params => {:scope => 'read_write'})
+            @access_token = @resp.token
+            @barber.update!(uid: @resp.params["stripe_user_id"]) if @resp
+            flash[:notice] = "Your account has been successfully created and is ready to process payments!"
+  end
+
+   # //this is where a user will be able to see their balance info
+  def payment_profile
+      @account = Stripe::Account.retrieve("#{@barber.uid.to_s}") if @barber.uid.present?
+      @balance = Stripe::Balance.retrieve() if @barber.uid.present?
+  end
+
   # GET /barbers/1
   # GET /barbers/1.json
   def show
+    @date = gon.day
 
     if @barber.url == "" or @barber.url.nil?
       p "BARBER.URL IS EMPTY"
@@ -62,10 +83,9 @@ require "httparty"
       gon.barberlongitude = lookup["coordinates"]["longitude"]
     end
 
-    if gon.clicked == true
-      render '/day_schedules'
-    end
+
   end
+
 
   # GET /barbers/new
   def new
@@ -75,7 +95,12 @@ require "httparty"
   # GET /barbers/1/edit
   def edit
 
-
+    @service = Service.new
+    times = [30, 60, 90, 120, 150, 180]
+    @duration = times.map do |time|
+      "#{time} minutes"
+    end
+    @barber_id = params[:id]
 
   end
 

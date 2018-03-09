@@ -5,7 +5,9 @@
   display: inline-block;
   height: 100%;
   width: 100%;
+
 }
+
 
 .table-striped thead tr{
   background-color: #0000ffa8;
@@ -16,11 +18,18 @@
 .calendar{
   box-shadow: 5px 3px 5px rgba(68, 68, 68, 0.6);
 
+  height: 20em;
+
 }
 .table-striped{
   box-shadow: 5px -1px 5px rgba(68, 68, 68, 0.6);
   margin-top: 10px;
+  height: 30em;
 }
-.calendar td:hover{
-  background-color: #dee5fc;
+td:hover{
+  box-shadow: -4px 8px 4px -4px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
+}
+
+td{
+  padding: 0 !important;
 }
