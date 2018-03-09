@@ -12,20 +12,13 @@
   <%= @barber.email %>
 </p>
 
-  <!-- <h3>Information from Yelp:</h3> -->
-  <!-- To testing only: -->
-  <!-- <p>
-    <%= @lookup %>
-    <%= @barberkeys %>
-  </p> -->
-
   <p style="font-size: 20px;">
     <strong>Barber shop:</strong>
-    <%= @barbername  %>
+    <%= @barber.barberName  %>
   </p>
   <p style="font-size: 20px;">
     <strong>Phone:</strong>
-    <%= @barberphone  %>
+    <%= @barber.phone  %>
   </p>
   <p style="font-size: 20px;">
     <strong>Address:</strong>
@@ -33,26 +26,20 @@
     <%= @barbercitystatezip%>.
   </p>
   <p style="font-size: 20px;">
-    <strong>Photos:</strong>
-    <!-- <p class="img-thumbnail">
-      <%= image_tag @barberphotos[0]  %>
-      <%= image_tag @barberphotos[1] %>
-    </p> -->
+    <strong>Rating:</strong>
+    <%= @barber.rating %>
+
   </p>
 
-
-<!-- photos -->
-
-  <% @barberphotos.each do |photo| %>
-    <div class="thumbnail thumb-box">
-      <%= image_tag photo, width: "200px;"%>
-    </div>
-<% end %>
-
-
-
-
-
+  <!-- photos -->
+  <p style="font-size: 20px;">
+    <strong>Photos:</strong>
+    <% @barberphotos.each do |photo| %>
+      <div class="thumbnail thumb-box">
+        <%= image_tag photo, width: "200px;"%>
+      </div>
+  <% end %>
+  </p>
 
 
 
@@ -73,6 +60,8 @@
 <br>
 
 <%= link_to 'Edit', edit_barber_path(@barber), class:"btn btn-success btn-lg" %> |
+<%= link_to 'Destroy', @barber, method: :delete, data: { confirm: 'Are you sure?' },class:"btn btn-info btn-lg"%> |
+
 <%= link_to 'Back', barbers_path, class:"btn btn-primary btn-lg" %>
 <%= link_to 'Schedule', @barber.get_appointment, class:"btn btn-info btn-lg" %>
 

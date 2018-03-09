@@ -1,10 +1,13 @@
 
+
+
+
 <% if flash[:notice] %>
     <div id="notice" style="color: red;"><%= flash[:notice] %></div>
 <% end %>
 
 <%= form_with(model: barber, local: true) do |form| %>
-  <% if barber.errors.any? %>
+  <% if @barber.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(barber.errors.count, "error") %> prohibited this barber from being saved:</h2>
 
@@ -19,12 +22,12 @@
 
   <div class="field" style="text-align:center;">
     <%= form.label :name %>
-    <%= form.text_field :name, id: :barber_name %>
+    <%= form.text_field :name, id: :barber_name, placeholder: "Name", class: "form-control" %>
   </div>
 
   <div class="field" style="text-align:center;">
     <%= form.label :email %>
-    <%= form.text_field :email, id: :barber_email %>
+    <%= form.text_field :email, id: :barber_email, placeholder: "Email", class: "form-control" %>
   </div>
   <div class="field" style="text-align:center;">
     <%= form.label :password %>
@@ -66,17 +69,10 @@
 
   <div class="actions">
     <p style="text-align:center;">
-    <%= form.submit "Update Barber", class: "btn btn-primary btn-lg" %>
+    <%= form.submit  class: "btn btn-primary btn-lg" %>
     </p>
   </div>
-  <!-- this is the one we need to add into the box  -->
 
-
-
-<!-- inside of this -->
-
-
-<!--  secured-->
 <%end%>
 <%=render 'create_calendar'%>
 

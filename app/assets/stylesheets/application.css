@@ -15,6 +15,34 @@
  *= require_self
  */
 
+ .checked {
+    color: orange;
+}
+
+.stars-outer {
+  display: inline-block;
+  position: relative;
+  font-family: FontAwesome;
+}
+
+.stars-outer::before {
+  content: "\f006 \f006 \f006 \f006 \f006";
+}
+
+.stars-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+}
+
+.stars-inner::before {
+  content: "\f005 \f005 \f005 \f005 \f005";
+  color: #f8ce0b;
+}
+
 
 /* Googlemaps API style */
 
@@ -98,8 +126,9 @@ h6 {
 
 header.masthead {
   position: relative;
-  /* background-color: #343a40; */
-  background: url("barberBackground.jpg") no-repeat center center;
+  background-color: #097bff;
+  height: 900px;
+  /* background: url("barberBackground.jpg") no-repeat center center; */
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -110,7 +139,6 @@ header.masthead {
 
 header.masthead .overlay {
   position: absolute;
-  background-color: #212529;
   height: 100%;
   width: 100%;
   top: 0;
@@ -120,6 +148,17 @@ header.masthead .overlay {
 
 header.masthead h1 {
   font-size: 2rem;
+}
+
+.barber{
+  background: url("Home2.jpg") no-repeat center center; */
+  position: absolute;
+  height: 550px;
+  width: 100%;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
 }
 
 @media (min-width: 768px) {
@@ -205,7 +244,11 @@ header.masthead h1 {
 }
 
 
-
+.navbar{
+  border-bottom: solid;
+    border-bottom-color: white;
+    border-bottom-width: 2px;
+}
 
 
 
@@ -226,6 +269,75 @@ header.masthead h1 {
 
 }
 
+
+
+
+
+/* .thumb-box{
+  position: relative;
+  height: 360px;
+
+  box-shadow: 4px 4px 4px 4px #e3e5e8;
+  border-radius: 15px;
+} */
+
+
+
+
+/* Box-shadow animated to barbers */
+.box {
+  position: relative;
+  display: inline-block;
+  height: 380px;
+  border-radius: 15px;
+  background-color: #fff;
+  box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.15);
+  transition: all 0.1s ease-in-out;
+}
+
+/* Create the hidden pseudo-element */
+/* include the shadow for the end state */
+.box::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  transition: opacity 0.1s ease-in-out;
+}
+
+/* The fast way */
+
+.make-it-fast {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+
+/* Pre-render the bigger shadow, but hide it */
+
+.make-it-fast::after {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+
+/* Transition to showing the bigger shadow on hover */
+
+.make-it-fast:hover::after {
+  opacity: 1;
+}
+
+/* Scale up the box */
+.box:hover {
+  transform: scale(1.2, 1.2);
+}
+
+/* Fade in the pseudo-element with the bigger shadow */
+.box:hover::after {
+  opacity: 1;
+}
 
 
 
