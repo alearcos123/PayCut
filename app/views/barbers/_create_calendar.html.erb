@@ -1,3 +1,4 @@
+
 <%= month_calendar do |date|%>
   <%if  DaySchedule.find_by(barber_id: @barber.id, date_id: date)%>
     <%= link_to day_schedule_update_path(date: date, barber_id: @barber.id), remote: true, class:"calendar-cell" do %>

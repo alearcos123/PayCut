@@ -1,7 +1,4 @@
 
-
-
-
 <% if flash[:notice] %>
     <div id="notice" style="color: red;"><%= flash[:notice] %></div>
 <% end %>
@@ -31,18 +28,41 @@
   </div>
   <div class="field" style="text-align:center;">
     <%= form.label :password %>
-    <%= form.text_field :password, id: :barber_password %>
+    <%= form.text_field :password, id: :barber_password, placeholder: "Password", class: "form-control"  %>
   </div>
   <div class="field" style="text-align:center;">
     <%= form.label :password_confirmation %>
-    <%= form.text_field :password_confirmation, id: :barber_password_confirmation %>
+    <%= form.text_field :password_confirmation, id: :barber_password_confirmation, placeholder: "Password Confirmation", class: "form-control"  %>
   </div>
   <div class="field" style="text-align:center;">
-    <%= form.label :url %>
-    <%= form.text_field :url, id: :barber_url %>
+    <%= form.label :Yelp_url %>
+    <%= form.text_field :url, id: :barber_url, placeholder: "Url", class: "form-control"  %>
   </div>
+  <br>
 
+  <div class="field" style="text-align:center;">
+    <%= form.label :Barber_Name %>
+    <%= form.text_field :barberName, id: :barber_barberName, placeholder: "Phone", class: "form-control"  %>
+  </div>
+  <br>
 
+  <div class="field" style="text-align:center;">
+    <%= form.label :phone %>
+    <%= form.text_field :phone, id: :barber_phone, placeholder: "Phone", class: "form-control"  %>
+  </div>
+  <br>
+
+  <div class="field" style="text-align:center;">
+    <%= form.label :address %>
+    <%= form.text_field :address, id: :barber_address, placeholder: "Address", class: "form-control"  %>
+  </div>
+  <br>
+
+  <div class="field" style="text-align:center;">
+    <%= form.label :Photo_Url %>
+    <%= form.text_field :photoUrl, id: :barber_photoUrl, placeholder: "Photo Url", class: "form-control"  %>
+  </div>
+  <br>
 
   <div class="actions">
     <p style="text-align:center;">
@@ -52,6 +72,7 @@
 
 <%end%>
 
+<h2>Plan your schedule:</h2>
 <%=render 'create_calendar'%>
 
 

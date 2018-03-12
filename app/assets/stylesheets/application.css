@@ -15,6 +15,32 @@
  *= require_self
  */
 
+/* sessions login */
+.card-container.card {
+    max-width: 350px;
+    padding: 40px 40px;
+}
+/*
+ * Card component
+ */
+.card {
+    background-color: #F7F7F7;
+    /* just in case there no content*/
+    padding: 20px 25px 30px;
+    margin: 0 auto 25px;
+    margin-top: 50px;
+    /* shadows and rounded borders */
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+
+
+/* stars to review */
  .checked {
     color: orange;
 }
@@ -25,33 +51,14 @@
   font-family: FontAwesome;
 }
 
-.stars-outer::before {
-  content: "\f006 \f006 \f006 \f006 \f006";
-}
-
-.stars-inner {
-  position: absolute;
-  top: 0;
-  left: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  width: 0;
-}
-
-.stars-inner::before {
-  content: "\f005 \f005 \f005 \f005 \f005";
-  color: #f8ce0b;
-}
-
 
 /* Googlemaps API style */
 
 /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
-        height: 60%;
-        width: 65%;
-        margin-left: 15%;
+        height: 100%;
+        width: 100%;
       }
       /* Optional: Makes the sample page fill the window. */
       html, body {
@@ -123,6 +130,21 @@ h6 {
   font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 700;
 }
+
+
+/* to search page */
+header.masthead1{
+  position: relative;
+  background-color: #097bff;
+  height: 300px;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
 
 header.masthead {
   position: relative;
@@ -244,16 +266,6 @@ header.masthead h1 {
 }
 
 
-.navbar{
-  border-bottom: solid;
-    border-bottom-color: white;
-    border-bottom-width: 2px;
-}
-
-
-
-
-
 .viewBody{
   text-align: center;
   background-image: url("images(1).jpeg");
@@ -269,6 +281,16 @@ header.masthead h1 {
 
 }
 
+
+
+/* Navbar params */
+
+.navbar{
+    border-bottom: solid;
+    border-bottom-color: white;
+    border-bottom-width: 2px;
+}
+
 .navbar1{
   position: fixed;
   width: 100%;
@@ -276,43 +298,25 @@ header.masthead h1 {
   left :0;
   padding: 2rem;
   text-align: center;
-  color: black;
+  color: white;
   font-family: sans-serif;
-  background-color: rgb(41, 117, 231);
+  background-color: #0b7bff;
   transition: 0.5s;
   color: #fff;
 }
 
-.scrolled{
+/* To do change in the navbar when scroll down */
+/* .scrolled{
   background-color: #fff;
-  border-bottom-color: white;
-  color: #000;;
+  box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.15);
+  color: #fff;;
   transition: 0.5s;
-}
-/* .navbar-angel{
-  background-color: white;
-} */
-/* .toggler-example {
-    cursor: pointer;
-    color: #0A38F5;
-}
-.dark-blue-text {
-    color: #0A38F5;
 } */
 
 span.navbar-toggler-icon {
-    background-image: url('https://mdbootstrap.com/img/svg/hamburger8.svg?color=E3005C');
+    background-image: url('https://mdbootstrap.com/img/svg/hamburger2.svg?color=fff');
 }
 
-
-
-/* .thumb-box{
-  position: relative;
-  height: 360px;
-
-  box-shadow: 4px 4px 4px 4px #e3e5e8;
-  border-radius: 15px;
-} */
 
 
 
@@ -373,6 +377,13 @@ span.navbar-toggler-icon {
 }
 
 
+.d-block{
+
+  height: 800px;
+}
+
+
+
 
 
 
@@ -380,3 +391,14 @@ footer.footer {
   padding-top: 4rem;
   padding-bottom: 4rem;
 }
+
+
+
+
+
+
+
+
+
+
+/* Show page Carousel bootstrap */

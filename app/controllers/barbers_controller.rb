@@ -111,27 +111,41 @@ require "httparty"
   # POST /barbers.json
   def create
     @barber = Barber.new(barber_params)
-    @barber.url = params[:barber][:url]
+    @barber.url = params[:barber][:url]    #save in the table the params introduced
+    @barber.barberName = params[:barber][:barberName]
+    @barber.phone = params[:barber][:phone]
+    @barber.address = params[:barber][:address]
+    @barber.photoUrl = params[:barber][:photoUrl]
 
-    example = (@barber.url).split("biz/")
 
-    business_id = example.last
-    url = "#{API_HOST}#{BUSINESS_PATH}#{business_id}"
 
-    response = HTTP.auth("Bearer #{API_KEY}").get(url)
 
-    #lookup has the complete response:
-    lookup = response.parse
 
-    @barber.barberName= lookup["name"]
-    #
-    @barber.phone = lookup["display_phone"]
-    #
-    @barber.address= "#{lookup["location"]["display_address"][0]}, #{lookup["location"]["display_address"][1]}"
+    if @barber.url == "" or @barber.url.nil?
+      p "BARBER.URL IS EMPTY"
+      gon.barberlatitude = 25.761681
+      gon.barberlongitude = -80.191788
+    else
+      example = (@barber.url).split("biz/")
 
-    @barber.rating = lookup["rating"]
+      business_id = example.last
+      url = "#{API_HOST}#{BUSINESS_PATH}#{business_id}"
 
-    @barber.photoUrl = lookup["photos"][0]
+      response = HTTP.auth("Bearer #{API_KEY}").get(url)
+
+      #lookup has the complete response:
+      lookup = response.parse
+
+      @barber.barberName= lookup["name"]
+      #
+      @barber.phone = lookup["display_phone"]
+      #
+      @barber.address= "#{lookup["location"]["display_address"][0]}, #{lookup["location"]["display_address"][1]}"
+
+      @barber.rating = lookup["rating"]
+
+      @barber.photoUrl = lookup["photos"][0]
+    end
 
 
 
