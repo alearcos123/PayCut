@@ -17,10 +17,39 @@
 
 
 
-
+// display menu
 $(document).ready(function(){
 $(".dropdown-button").dropdown();
+
 });
+
+
+// To code the the literal address to coordinates
+var geocoder;
+var map;
+function initialize() {
+  geocoder = new google.maps.Geocoder();
+  var latlng = new google.maps.LatLng(-34.397, 150.644);
+  var mapOptions = {
+    zoom: 8,
+    center: latlng
+  }
+  map = new google.maps.Map(document.getElementById('map'), mapOptions);
+}
+function codeAddress() {
+  var address = document.getElementById('address').value;
+  geocoder.geocode( { 'address': address}, function(results, status) {
+    if (status == 'OK') {
+      map.setCenter(results[0].geometry.location);
+      var marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location
+      });
+    } else {
+      alert('Geocode was not successful for the following reason: ' + status);
+    }
+  });
+}
 
 
 // Googlemaps JS
@@ -107,6 +136,10 @@ function initAutocomplete() {
   });
 }
 
+
+
+// change navbar status
+
 $(function() {
     var header = $(".navbar1", );
 
@@ -120,3 +153,8 @@ $(function() {
     });
     console.log("this is a test")
 });
+
+
+
+
+// Show page Carousel Bootstrap

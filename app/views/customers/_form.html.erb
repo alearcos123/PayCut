@@ -1,41 +1,44 @@
-<%= form_with(model: customer, local: true) do |form| %>
-  <% if customer.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(customer.errors.count, "error") %> prohibited this customer from being saved:</h2>
+<div class="card card-container">
+      <%= form_with(model: customer, local: true) do |form| %>
+        <% if customer.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(customer.errors.count, "error") %> prohibited this customer from being saved:</h2>
 
-      <ul>
-      <% customer.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+            <ul>
+            <% customer.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+
+        <div class="field" style="text-align:center;">
+          <%= form.label :name %>
+          <%= form.text_field :name, id: :customer_name, class: 'form-control', placeholder: "Name"  %>
+        </div>
+
+        <div class="field" style="text-align:center;">
+          <%= form.label :email %>
+          <%= form.text_field :email, id: :customer_email, class: 'form-control', placeholder: "Email address"  %>
+        </div>
+        <div class="field" style="text-align:center;">
+          <%= form.label :password %>
+          <%= form.password_field :password, id: :customer_password, class: 'form-control', placeholder: "Password" %>
+        </div>
+        <div class="field" style="text-align:center;">
+          <%= form.label :password_confirmation %>
+          <%= form.password_field :password_confirmation, id: :customer_password_confirmation, class: 'form-control', placeholder: "Password confirmation" %>
+        </div>
+
+
+        <span> <br>  </span>
+
+        <div class="actions">
+          <p style="text-align:center;">
+          <%= form.submit "Update Customer", class: "btn btn-primary btn-lg" %>
+          </p>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-
-  <div class="field" style="text-align:center;">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :customer_name %>
-  </div>
-
-  <div class="field" style="text-align:center;">
-    <%= form.label :email %>
-    <%= form.text_field :email, id: :customer_email %>
-  </div>
-  <div class="field" style="text-align:center;">
-    <%= form.label :password %>
-    <%= form.password_field :password, id: :customer_password %>
-  </div>
-  <div class="field" style="text-align:center;">
-    <%= form.label :password_confirmation %>
-    <%= form.password_field :password_confirmation, id: :customer_password_confirmation %>
-  </div>
-
-
-  <span> <br>  </span>
-
-  <div class="actions">
-    <p style="text-align:center;">
-    <%= form.submit "Update Customer", class: "btn btn-primary btn-lg" %>
-    </p>
-  </div>
-<% end %>
+    </div><!-- /card-container -->

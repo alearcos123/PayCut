@@ -5,7 +5,7 @@
         <div class="container">
           <div class="row">
             <div class="col-xl-9 mx-auto">
-              <h1 class="mb-5">PayCut <br>A modern way to get a hair cut.</h1>
+              <h1 class="mb-5">PayCut <br> <span style="font-size:24px;">A modern way to get a hair cut.</span></h1>
             </div>
             <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
               <%= form_tag '/search', method: "get" do %>
@@ -34,7 +34,7 @@
 
 
         <div class="col-md-4 order-md-2">
-          <div style="background-color: white; border-radius:10px;">
+          <div class="bg-light" style="border-radius:10px;">
             <br>
             <h1 class=" text-center">Create a new Barber</h1>
             <ul style="font-size: 20px;margin-right:10px;">
@@ -93,25 +93,56 @@
                 <div class="col-md-12" >
                   <div class="thumbnail">
                     <h2 style= "text-align: center; padding:10px 10px 0 10px;"><%= barber.name %></h2>
-                    <p style= "text-align: center">
+                    <% if barber.url == "" or barber.url.nil? %>
 
-                      <%=link_to image_tag(barber.photoUrl, size: "200x150", class: "img-circle"), barber, class: "img-circle"%>
+                      <% if barber.photoUrl == "" or barber.photoUrl.nil? %>
+                          <%=link_to image_tag("Home1.jpg", size: "200x150", style: "border-radius:20px;"), barber, class: "img-circle"%>
+                      <% else %>
+                          <%=link_to image_tag(barber.photoUrl, size: "200x150", style: "border-radius:20px;"), barber, class: "img-circle"%>
+                      <% end %>
+                          <div class="caption" style= "text-align: center">
+                            <p>
+                              <%=barber.barberName%>
+                            </p>
+                            <p>
+                              <% if barber.address == "" or barber.address.nil? %>
+                              <% else %>
+                              <%=barber.address%>
+                              <% end %>
+                            </p>
+                            <p>
+                              <% if barber.phone == "" or barber.phone.nil? %>
+                              <% else %>
+                              <%=barber.phone%>
+                              <% end %>
+                            </p>
+                          </div>
 
-                    <div class="caption" style= "text-align: center">
-                      <p>
-                        <%=barber.barberName%>
-                      </p>
-                      <p>
-                        <%=barber.address%>
-                      </p>
-                      <p>
-                        <%=barber.rating%>
-                        <% barber.rating.to_i.times do  %>
-                         <span class="fa fa-star checked"></span>
-                        <% end %>
-                      </p>
 
-                    </div>
+                    <% else %>
+                      <%=link_to image_tag(barber.photoUrl, size: "200x150", style: "border-radius:20px;"), barber, class: "img-circle"%>
+
+                        <div class="caption" style= "text-align: center">
+                          <p>
+                            <%=barber.barberName%>
+                          </p>
+                          <p>
+                            <%=barber.address%>
+                          </p>
+                          <p>
+                            <%=barber.phone%>
+                          </p>
+                          <p>
+                            <%=barber.rating%>
+                            <% barber.rating.to_i.times do  %>
+                             <span class="fa fa-star checked"></span>
+                            <% end %>
+                          </p>
+
+                        </div>
+                    <% end %>
+
+
 
                   </div>
                 </div>

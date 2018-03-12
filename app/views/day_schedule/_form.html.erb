@@ -9,11 +9,7 @@
          <%= select_tag "closing_hour", options_for_select(@close_times), prompt: "Choose Closing Time" %>
          <%= hidden_field_tag "day", @date %>
          <%= hidden_field_tag "barber_id", @barber%>
+         <%=f.submit :Submit, class: 'btn btn-success'%>
+         <%=link_to "Close", "#", class: "btn btn-primary fixing"%>
+         <%end%>
     </div>
-
-         <div class="actions"  >
-            <%=f.submit :Submit, class: 'btn btn-success'%>
-
-            <%=link_to "Close", "#", class: "btn btn-primary fixing"%>
-        </div>
-     <%end%>

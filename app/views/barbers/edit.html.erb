@@ -1,24 +1,41 @@
+<div class="container">
+  <br>
+  <h1 style="text-align:center;">Editing Barber</h1>
+  <hr>
+  <h2 style="text-align:center;">Create a Service<h2>
 
-<h1>Editing Barber</h1>
-<h2>Create a Service<h2>
-<%= render 'services/form' %>
-<%if !Service.find_by(barber_id: params[:id]) == nil? %>
-  <b>Current Services You Offer</b> <br>
-  <%Barber.find(params[:id]).services.each do |service| %>
-  <div class="individual_service" style="border: solid;">
-    <span>
-      <%= service.description %>
-    </span>
-    <span>
-      $<%= service.price %>
-    </span>
-    <span>
-      <%= service.time_slots * 30 %> minutes
-    </span>
-  </div>
-  <%end %>
-<%end %>
-<%= render 'form', barber: @barber %>
-<%= link_to 'Show', @barber %>
-<%= link_to 'Back', barbers_path %>
+    <%= render 'services/form' %>
+    <%if !Service.find_by(barber_id: params[:id]) == nil? %>
+      <b>Current Services You Offer</b> <br>
+      <%Barber.find(params[:id]).services.each do |service| %>
+      <div class="individual_service" style="border: solid;">
+        <span>
+          <%= service.description %>
+        </span>
+        <span>
+          $<%= service.price %>
+        </span>
+        <span>
+          <%= service.time_slots * 30 %> minutes
+        </span>
+      </div>
+      <%end %>
+    <%end %>
+  <%= render 'form', barber: @barber %>
+</div>
 
+
+
+
+
+
+
+
+<body class="viewBody">
+ <div class="content" >
+   <br>
+  <%= link_to 'Show', @barber, class:"btn btn-success" %> |
+  <%= link_to 'Back', barbers_path, class:"btn btn-primary" %>
+
+ </div>
+</body>

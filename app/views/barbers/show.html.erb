@@ -1,3 +1,60 @@
+<div class="container-fluid">
+
+<!--Carousel Wrapper-->
+<div id="carousel-example-1z" class="carousel slide carousel-fade" data-ride="carousel">
+    <!--Indicators-->
+    <ol class="carousel-indicators">
+        <li data-target="#carousel-example-1z" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-example-1z" data-slide-to="1"></li>
+        <li data-target="#carousel-example-1z" data-slide-to="2"></li>
+    </ol>
+    <!--/.Indicators-->
+    <!--Slides-->
+    <div class="carousel-inner" role="listbox">
+        <div class="carousel-item active">
+          <% if @barber.url == "" or @barber.url.nil? %>
+          <%= image_tag "Home1.jpg", class: "mx-auto d-block", alt: "First slide"%>
+          <%else %>
+          <%= image_tag @barberphotos[0], class: "mx-auto d-block", alt: "First slide"%>
+          <%end %>
+        </div>
+        <div class="carousel-item">
+          <% if @barber.url == "" or @barber.url.nil? %>
+          <%= image_tag "Home2.jpg", class: "mx-auto d-block", alt: "First slide"%>
+          <%else %>
+          <%= image_tag @barberphotos[1], class: "mx-auto d-block", alt: "Second slide"%>
+          <% end %>
+        </div>
+        <div class="carousel-item">
+          <% if @barber.url == "" or @barber.url.nil? %>
+          <%= image_tag "Home3.jpg", class: "mx-auto d-block", alt: "First slide"%>
+          <%else %>
+          <%= image_tag @barberphotos[2], class: "mx-auto d-block", alt: "Third slide"%>
+          <% end %>
+        </div>
+    </div>
+    <!--Controls-->
+    <a class="carousel-control-prev" href="#carousel-example-1z" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carousel-example-1z" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+    <!--/.Controls-->
+</div>
+<!--/.Carousel Wrapper-->
+
+</div>
+
+
+
+
+
+<body class="viewBody">
+ <div class="content" >
+   <br>
 
 <p id="notice"><%= notice %></p>
 <p style="font-size: 20px;">
@@ -19,42 +76,52 @@
   </p>
   <p style="font-size: 20px;">
     <strong>Address:</strong>
-    <%= @barberstreet  %>,
-    <%= @barbercitystatezip%>.
+    <%= @barberstreet  %>
+    <%= @barbercitystatezip %>
   </p>
 
   <p style="font-size: 20px;">
     <strong>Rating:</strong>
-    <%= @barber.rating %>
-
-
-
-
-  </p>
-
-  <!-- photos -->
-  <p style="font-size: 20px;">
-    <strong>Photos:</strong>
-    <% @barberphotos.each do |photo| %>
-      <div class="thumbnail thumb-box">
-        <%= image_tag photo, width: "200px;"%>
-      </div>
-  <% end %>
+    <%=@barber.rating%>
+    <% @barber.rating.to_i.times do  %>
+     <span class="fa fa-star checked"></span>
+    <% end %>
   </p>
 
 
+  <br>
 
-<%= render 'calendar'%>
+
+<h2>Plan your schedule:</h2>
+<div class="container">
+  <%=render 'create_calendar'%>
+
+</div>
+
 
 <br>
 
+<% if @barber.url == "" or @barber.url.nil? %>
+<h2>Find our location:</h2>
+<div class="container">
+  <input id="pac-input" class="controls" type="text" placeholder="Type addres here">
+  <div id="map" style="height:30em;"></div>
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=<%="#{ENV["MAPS"]}"%>&libraries=places&callback=initAutocomplete"
+        async defer></script>
+
+<% else %>
 <!-- Googlemaps API -->
+<h2>Our location:</h2>
+<div class="container">
+  <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+  <div id="map" style="height:30em;"></div>
 
-<input id="pac-input" class="controls" type="text" placeholder="Search Box">
-<div id="map" style="height:30em;"></div>
+  <script src="https://maps.googleapis.com/maps/api/js?key=<%="#{ENV["MAPS"]}"%>&libraries=places&callback=initAutocomplete"
+        async defer></script>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=<%="#{ENV["MAPS"]}"%>&libraries=places&callback=initAutocomplete"
-      async defer></script>
+</div>
+<%end %>
 
 <br>
 
@@ -87,3 +154,5 @@
 
 
 
+</div>
+</body>
